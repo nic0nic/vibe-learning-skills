@@ -34,7 +34,7 @@ Ziel: mit **wenig Text** (die Lehrkraft hat evtl. nur wenige Credits) einen **g�
 ## Regeln
 
 - **JSON gültig halten:** nur doppelte Anführungszeichen; keine Kommas vor `]`/`}`; Zahlen ohne Tausenderpunkt (`"l": 11900`, Komma als Punkt: `58.31`); Anführungszeichen in HTML als `\"`; keine Zeilenumbrüche in Texten (stattdessen `<br>` oder `<p>`).
-- **HTML nur für Text:** `p b i br ul ol li h2 h3 table tr td th code pre`. **Kein JavaScript** (`<script>`, `onclick=`, `javascript:`) – die Prüfung lehnt es ab.
+- **HTML nur für Text** (Erlaubtliste, sonst lehnt die Prüfung ab): `p br b strong i em u s sub sup small mark span div hr ul ol li h2 h3 h4 table thead tbody tr th td code pre blockquote`, als Attribut nur `class="…"` (bei `td`/`th` auch `colspan`, `rowspan`). Keine Links, Bilder, Styles, kein JavaScript.
 - **Didaktik:** Vor neuen Aufgaben eine kurze Erklärung (Schritt mit `html`) oder `erinnerung`. Aufgabenstellungen beginnen mit einem **Operator** (nenne, berechne, ordne zu, bilde den Buchungssatz …). **Alle nötigen Werte stehen im selben Schritt** (`material`), nie nur in einem früheren. Bei MC zu jeder falschen Antwort ein `why`. Richtige Antwort darf an erster Stelle stehen (wird gemischt).
 - **BWR (Bayern):** Beträge im Text „11.900,00 €“; Konten ab Jgst. 8 mit Nummer und Kürzel („2800 BK“), **in Jgst. 7 nur Kürzel** („BK“). Gibt es die Skills `bwr-uebungsaufgaben` oder `bwr-aufgabenstellungen-afb`, deren Schreibweise und Operatoren übernehmen.
 - **Datenschutz:** keine echten Namen von Schülerinnen und Schülern, keine personenbezogenen Daten.

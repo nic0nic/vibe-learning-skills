@@ -13,6 +13,42 @@ TYPEN = {
 }
 MAX = 150000
 VERBOTEN = re.compile(r"<\s*script|\bon[a-z]+\s*=|javascript:|<\s*iframe|<\s*object|<\s*embed", re.I)
+# Erlaubtliste für HTML in Texten (wie ERLAUBT/TAG in seite.js)
+ERLAUBT = {"p", "br", "b", "strong", "i", "em", "u", "s", "sub", "sup", "small", "mark", "span", "div", "hr",
+           "ul", "ol", "li", "h2", "h3", "h4", "table", "thead", "tbody", "tr", "th", "td", "code", "pre", "blockquote"}
+TAG = re.compile(r'<(/?)([a-zA-Z][a-zA-Z0-9]*)((?:\s+[a-z]+="[a-z0-9 _-]*")*)\s*(/?)>')
+
+
+def html_fehler(s):
+    f = []
+    i = s.find("<")
+    while i >= 0:
+        n = s[i + 1:i + 2]
+        if n and re.match(r"[a-zA-Z/!?]", n):
+            m = TAG.match(s, i)
+            name = m.group(2).lower() if m else None
+            if not m or name not in ERLAUBT:
+                f.append(f"nicht erlaubtes HTML: {s[i:i + 40]}")
+            else:
+                attrs = re.findall(r"[a-z]+(?==)", m.group(3))
+                ok = all(a == "class" or (name in ("td", "th") and a in ("colspan", "rowspan")) for a in attrs)
+                if not ok or (m.group(1) and attrs):
+                    f.append(f"nicht erlaubtes Attribut: {m.group(0)[:60]}")
+                if re.search(r'span="[^"]*[^0-9"]', m.group(3)):
+                    f.append(f"colspan/rowspan nur als Zahl: {m.group(0)[:60]}")
+        i = s.find("<", i + 1)
+    return f
+
+
+def alle_texte(x, wo, f):
+    if isinstance(x, str):
+        f.extend(f"{wo}: {e}" for e in html_fehler(x))
+    elif isinstance(x, list):
+        for y in x:
+            alle_texte(y, wo, f)
+    elif isinstance(x, dict):
+        for y in x.values():
+            alle_texte(y, wo, f)
 
 
 def text(v):
@@ -95,6 +131,9 @@ def pruefe(j):
         f.append("Eigenes JavaScript (script, onclick=, javascript:, iframe …) ist nicht erlaubt.")
     if not text(j.get("titel")):
         f.append("„titel“ fehlt.")
+    for k, wo in (("titel", "Titel"), ("kurztext", "Kurztext")):
+        if j.get(k) is not None:
+            alle_texte(j[k], wo, f)
     schritte = j.get("schritte") if isinstance(j.get("schritte"), list) else ([{"aufgaben": j["aufgaben"]}] if isinstance(j.get("aufgaben"), list) else [])
     if not schritte:
         f.append("Keine Schritte bzw. Aufgaben gefunden („schritte“ oder „aufgaben“).")
@@ -112,6 +151,7 @@ def pruefe(j):
             continue
         for k, a in enumerate(s.get("aufgaben") or []):
             aufgabe(a, f"{wo}, Aufgabe {k + 1}", f)
+        alle_texte(s, wo, f)
     return f
 
 
