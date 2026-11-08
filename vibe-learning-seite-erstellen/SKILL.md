@@ -38,7 +38,7 @@ Ziel: mit **wenig Text** (die Lehrkraft hat evtl. nur wenige Credits) einen **g�
 - **Didaktik:** Vor neuen Aufgaben eine kurze Erklärung (Schritt mit `html`) oder `erinnerung`. Aufgabenstellungen beginnen mit einem **Operator** (nenne, berechne, ordne zu, bilde den Buchungssatz …). **Alle nötigen Werte stehen im selben Schritt** (`material`), nie nur in einem früheren. Bei MC zu jeder falschen Antwort ein `why`. Richtige Antwort darf an erster Stelle stehen (wird gemischt).
 - **BWR (Bayern):** Beträge im Text „11.900,00 €“; Konten ab Jgst. 8 mit Nummer und Kürzel („2800 BK“), **in Jgst. 7 nur Kürzel** („BK“). Gibt es die Skills `bwr-uebungsaufgaben` oder `bwr-aufgabenstellungen-afb`, deren Schreibweise und Operatoren übernehmen.
 - **Datenschutz:** keine echten Namen von Schülerinnen und Schülern, keine personenbezogenen Daten.
-- **„Kleinigkeiten“** (Tabellen, Hervorhebungen, eine Formel im Text) gehen über HTML. Neue Interaktion (anderes Bedienen, andere Prüfung) ist ein neuer Aufgabentyp.
+- **„Kleinigkeiten“** (Tabellen, Hervorhebungen, eine Formel im Text) gehen über HTML. Bruch mit Bruchstrich: `<span class=\"bruch\"><span>Zähler</span><span>Nenner</span></span>`. Neue Interaktion (anderes Bedienen, andere Prüfung) ist ein neuer Aufgabentyp.
 
 ## Fehlender Aufgabentyp
 

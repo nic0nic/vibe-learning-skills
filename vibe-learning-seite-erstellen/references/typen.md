@@ -2,6 +2,7 @@
 
 Alle Typen kennen zusätzlich: `nr`, `frage`, `erinnerung`, `erinnerungZu`, `material`, `ok` (Text bei Erfolg), `danach` (Folgeaufgabe).
 Vollständiges Beispiel einer Reihe: `beispiel.json`.
+Formel mit Bruchstrich in jedem HTML-Text: `<span class=\"bruch\"><span>Restschuld · Zinssatz</span><span>100</span></span>`.
 
 ## mc – Multiple Choice
 `options` (Texte), `correct` (Indizes ab 0; mehrere = Mehrfachauswahl), `why` (Erklärung je falscher Antwort, Schlüssel = Index als Text), `after` (Text nach Erfolg). Optional `multi: true` (Mehrfachauswahl, auch wenn nur eine richtig ist), `mischen: false` (Reihenfolge behalten, z. B. bei „alle …“).
