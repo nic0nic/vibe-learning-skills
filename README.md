@@ -28,6 +28,43 @@ Wer keine Skills nutzen kann (je nach Tarif), kopiert den Inhalt von `SKILL.md` 
 
 Chat → JSON-Block → [vl.nimals.de/vorlage.html](https://vl.nimals.de/vorlage.html) einfügen und testen → als Lehrkraft einreichen (es entsteht ein Pull Request in vibe-learning, der nach Freigabe auf der Seite erscheint) oder als Datei herunterladen.
 
+## Abschlussprüfungen für `bwr-ap-lehrplan-mapping` ergänzen
+
+Die Volltexte der Abschlussprüfungen sind urheberrechtlich geschützt und deshalb **nicht** in diesem Repo. Ohne sie findet der Skill die passenden AP-Aufgaben (Prüfung, Nummer, Thema, Typ), kann sie aber nicht wörtlich zitieren. Wer die AP-PDFs hat (z. B. über Schule/ISB), legt sie für sich selbst so ab:
+
+1. Je Prüfung eine Datei `bwr-ap-lehrplan-mapping/references/ap/AP_JJJJ_HT.md` bzw. `AP_JJJJ_NT.md` anlegen (z. B. `AP_2025_HT.md`).
+2. Text aus dem PDF holen: `pdftotext -layout AP_2025_HT.pdf -` (oder in claude.ai das PDF hochladen und Claude bitten, die Datei im folgenden Format zu erstellen).
+3. Aufbau der Datei – jeder Block in einem Codeblock `text`, damit das Layout erhalten bleibt:
+   ````
+   # Abschlussprüfung BwR 2025 Haupttermin (2025/HT)
+
+   ## Angabe
+
+   ### Unternehmensinformationen und formale Vorgaben
+
+   ```text
+   …Text…
+   ```
+
+   ### Aufgabe 1
+
+   ```text
+   …Angabe von Aufgabe 1 mit 1.1, 1.2 …
+   ```
+
+   ## Lösungsvorschlag
+
+   ### Aufgabe 1
+
+   ```text
+   …Lösung von Aufgabe 1…
+   ```
+   ````
+4. Testen: `python3 scripts/show_ap.py 2025/HT 1.1 --loesung` (im Ordner `bwr-ap-lehrplan-mapping`).
+5. Für claude.ai den Ordner `bwr-ap-lehrplan-mapping` **samt** `references/ap/` als ZIP packen und als Skill hochladen (nur für dich, nicht weitergeben).
+
+Der Ordner `references/ap/` steht in `.gitignore` und wird nicht mit hochgeladen, auch wenn du in diesem Repo arbeitest. Neue Prüfungsjahrgänge zusätzlich in `references/ap_mapping.csv` eintragen (siehe `SKILL.md`, „Neue AP-Jahrgänge ergänzen“).
+
 ## Pflege
 
 vibe learning: Die Aufgabentypen kommen aus `pb_public/lib/aufgaben.js` in vibe-learning; Format und Prüfregeln aus `pb_public/lib/seite.js`. Kommt dort ein Typ dazu oder ändert sich ein Feld, `references/typen.md`, `SKILL.md` (Typenliste) und `scripts/pruefe.py` hier anpassen.
