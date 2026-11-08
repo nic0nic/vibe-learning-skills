@@ -1,6 +1,6 @@
 ---
 name: vibe-learning-seite-erstellen
-description: Erstellt Übungen für die Lernplattform vibe learning (vl.nimals.de) als kurzen Aufgaben-JSON-Block, den Lehrkräfte auf vl.nimals.de/vorlage.html einfügen, testen und einreichen. Nutzen, wenn eine Lehrkraft eine interaktive Übung, Aufgabenreihe oder Erarbeitung für vibe learning möchte (Multiple Choice, Zahlen, Lückentext, Zuordnen, Freitext, Lern-Chat, Buchungssatz) – auch wenn nur „Übung für vibe learning“ oder „Aufgaben für die Plattform“ gesagt wird. Fehlt ein Aufgabentyp, prüft der Skill die Umsetzbarkeit und bereitet ein GitHub-Issue vor.
+description: Erstellt Übungen für die Lernplattform vibe learning (vl.nimals.de) als kurzen Aufgaben-JSON-Block, den Lehrkräfte auf vl.nimals.de/vorlage.html einfügen, testen und einreichen. Nutzen, wenn eine Lehrkraft eine interaktive Übung, Aufgabenreihe oder Erarbeitung für vibe learning möchte (Multiple Choice, Zahlen, Lückentext, Zuordnen, Freitext, Lern-Chat, Buchungssatz, Tabelle ausfüllen) – auch wenn nur „Übung für vibe learning“ oder „Aufgaben für die Plattform“ gesagt wird. Fehlt ein Aufgabentyp, prüft der Skill die Umsetzbarkeit und bereitet ein GitHub-Issue vor.
 ---
 
 # Übung für vibe learning als Aufgaben-JSON
@@ -11,7 +11,7 @@ Ziel: mit **wenig Text** (die Lehrkraft hat evtl. nur wenige Credits) einen **g�
 
 1. **Klären (höchstens eine Rückfrage):** Fach, Jahrgangsstufe, Thema, ungefährer Umfang. Was die Lehrkraft schon gesagt oder hochgeladen hat, nicht erneut fragen. Fehlt nur Kleines, sinnvoll annehmen.
 2. **Aufgabentypen wählen** – nur diese gibt es (Felder und Beispiele: `references/typen.md`, nur bei Bedarf lesen):
-   `mc` Multiple Choice · `zahlen` Zahleneingabe · `luecken` Lückentext mit Auswahllisten · `zuordnen` Karten in Felder ziehen · `freitext` Begriffe eingeben (mit Tippfehlererkennung) · `chat` Lern-Chat Schritt für Schritt · `buchungssatz` Buchungssatz bilden
+   `mc` Multiple Choice · `zahlen` Zahleneingabe · `luecken` Lückentext mit Auswahllisten · `zuordnen` Karten in Felder ziehen · `freitext` Begriffe eingeben (mit Tippfehlererkennung) · `chat` Lern-Chat Schritt für Schritt · `buchungssatz` Buchungssatz bilden · `tabelle` Tabelle ausfüllen (z. B. Tilgungsplan)
    Passt nichts davon: siehe „Fehlender Aufgabentyp“.
 3. **JSON ausgeben:** genau **ein** Codeblock ```json …```, davor höchstens ein Satz, danach diese Hinweise (kurz):
    > Kopiere den Block auf **https://vl.nimals.de/vorlage.html**, klicke „Prüfen und Vorschau“ und probiere die Übung aus. Als Lehrkraft kannst du sie dort einem Bereich zuordnen und einreichen – oder als Datei herunterladen.

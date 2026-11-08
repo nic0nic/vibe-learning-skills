@@ -50,3 +50,9 @@ Bei Fehlern erklärt der Bot und macht weiter; am Ende Punkte. Gut für Buchungs
 {"typ": "buchungssatz", "frage": "Bilde den Buchungssatz.", "konten": ["0700 MA", "2600 VORST", "2800 BK", "4400 VE"], "soll": [["0700 MA", 40000], ["2600 VORST", 7600]], "haben": [["4400 VE", 47600]], "steuer": ["2600 VORST"], "nebenrechnung": "Vorsteuer: 40.000,00 € · 19 % = 7.600,00 €"}
 ```
 Jgst. 7: Konten ohne Nummer, z. B. `"konten": ["BK", "UEFE", "UST", "VORST"]`.
+
+## tabelle – Tabelle ausfüllen (z. B. Tilgungsplan, Abschreibung)
+`spalten` (Spaltenköpfe), `zeilen`: je Zeile eine Liste mit genau so vielen Zellen. Text oder Zahl = vorgegeben (Zahlen werden mit 2 Nachkommastellen angezeigt, Jahreszahlen daher als Text `"1"`), `{"l": Lösung}` = Eingabefeld. Optional `einheit` (z. B. `"€"`, im Kopf ab Spalte 2), `hinweise` (`{"Spaltenindex": "Rechenregel"}`, erscheint bei Fehlern in dieser Spalte), `tol`.
+```json
+{"typ": "tabelle", "frage": "Vervollständige den Tilgungsplan.", "einheit": "€", "spalten": ["Jahr", "Restschuld am Jahresanfang", "Zinsen (5 %)", "Tilgung", "Rate", "Restschuld am Jahresende"], "zeilen": [["1", 40000, {"l": 2000}, 10000, {"l": 12000}, {"l": 30000}], ["2", {"l": 30000}, {"l": 1500}, 10000, {"l": 11500}, {"l": 20000}]], "hinweise": {"2": "Zinsen = Restschuld am Jahresanfang · 5 : 100", "4": "Rate = Zinsen + Tilgung"}}
+```

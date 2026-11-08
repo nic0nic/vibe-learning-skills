@@ -10,6 +10,7 @@ import json, re, sys
 TYPEN = {
     "mc": ["options", "correct"], "zahlen": ["felder"], "luecken": ["text"], "zuordnen": ["felder", "karten"],
     "freitext": ["felder", "antworten"], "chat": ["nachrichten"], "buchungssatz": ["konten", "soll", "haben"],
+    "tabelle": ["spalten", "zeilen"],
 }
 MAX = 150000
 VERBOTEN = re.compile(r"<\s*script|\bon[a-z]+\s*=|javascript:|<\s*iframe|<\s*object|<\s*embed", re.I)
@@ -116,6 +117,20 @@ def aufgabe(a, wo, f):
                 f.append(f"{wo}: Buchungszeile {json.dumps(x, ensure_ascii=False)} – Konto muss in „konten“ stehen, Betrag als Zahl")
         if summe(a["soll"]) != summe(a["haben"]):
             f.append(f"{wo}: Soll ({summe(a['soll'])}) und Haben ({summe(a['haben'])}) sind nicht gleich groß")
+    if typ == "tabelle" and isinstance(a.get("spalten"), list) and isinstance(a.get("zeilen"), list):
+        felder = 0
+        for i, r in enumerate(a["zeilen"]):
+            if not isinstance(r, list) or len(r) != len(a["spalten"]):
+                f.append(f"{wo}, Zeile {i + 1}: braucht genau {len(a['spalten'])} Zellen (wie „spalten“)")
+                continue
+            for j, c in enumerate(r):
+                if isinstance(c, dict):
+                    if not zahl(c.get("l")):
+                        f.append(f"{wo}, Zeile {i + 1}, Spalte {j + 1}: Eingabefeld braucht „l“ (Lösung als Zahl)")
+                    else:
+                        felder += 1
+        if not felder:
+            f.append(f"{wo}: keine Eingabefelder ({{\"l\": Lösung}}) in der Tabelle")
     if a.get("danach"):
         aufgabe(a["danach"], wo + " → danach", f)
 
