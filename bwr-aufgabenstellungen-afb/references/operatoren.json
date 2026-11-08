@@ -1,0 +1,397 @@
+{
+ "hinweis": "lemma: Grundform; du/sie: Imperativ-Stamm für Erkennung; afb: I/II/III; gruppe: Synonymgruppe für Rotation; quelle: ISB = Handreichung, AP = in Abschlussprüfungen 2023-2025 verwendet, aber nicht im ISB-Katalog",
+ "operatoren": [
+  {
+   "lemma": "nennen",
+   "du": "Nenne",
+   "sie": "Nennen Sie",
+   "afb": "I",
+   "gruppe": "wiedergeben",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "angeben",
+   "du": "Gib",
+   "sie": "Geben Sie",
+   "afb": "I",
+   "gruppe": "wiedergeben",
+   "quelle": "ISB+AP",
+   "enthalten": "an"
+  },
+  {
+   "lemma": "aufzählen",
+   "du": "Zähle",
+   "sie": "Zählen Sie",
+   "afb": "I",
+   "gruppe": "wiedergeben",
+   "quelle": "ISB",
+   "enthalten": "auf"
+  },
+  {
+   "lemma": "wiedergeben",
+   "du": "Gib wieder",
+   "sie": "Geben Sie wieder",
+   "afb": "I",
+   "gruppe": "wiedergeben",
+   "quelle": "ISB",
+   "enthalten": "wieder"
+  },
+  {
+   "lemma": "notieren",
+   "du": "Notiere",
+   "sie": "Notieren Sie",
+   "afb": "I",
+   "gruppe": "wiedergeben",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "benennen",
+   "du": "Benenne",
+   "sie": "Benennen Sie",
+   "afb": "I",
+   "gruppe": "wiedergeben",
+   "quelle": "AP"
+  },
+  {
+   "lemma": "beschreiben",
+   "du": "Beschreibe",
+   "sie": "Beschreiben Sie",
+   "afb": "I",
+   "gruppe": "beschreiben",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "schildern",
+   "du": "Schildere",
+   "sie": "Schildern Sie",
+   "afb": "I",
+   "gruppe": "beschreiben",
+   "quelle": "ISB"
+  },
+  {
+   "lemma": "darstellen",
+   "du": "Stelle",
+   "sie": "Stellen Sie",
+   "afb": "I",
+   "gruppe": "beschreiben",
+   "quelle": "ISB",
+   "enthalten": "dar"
+  },
+  {
+   "lemma": "definieren",
+   "du": "Definiere",
+   "sie": "Definieren Sie",
+   "afb": "I",
+   "gruppe": "definieren",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "zuordnen",
+   "du": "Ordne",
+   "sie": "Ordnen Sie",
+   "afb": "I",
+   "gruppe": "zuordnen",
+   "quelle": "ISB+AP",
+   "enthalten": "zu"
+  },
+  {
+   "lemma": "einordnen",
+   "du": "Ordne ein",
+   "sie": "Ordnen Sie ein",
+   "afb": "I",
+   "gruppe": "zuordnen",
+   "quelle": "ISB",
+   "enthalten": "ein"
+  },
+  {
+   "lemma": "auswählen",
+   "du": "Wähle",
+   "sie": "Wählen Sie",
+   "afb": "I",
+   "gruppe": "zuordnen",
+   "quelle": "ISB+AP",
+   "enthalten": "aus"
+  },
+  {
+   "lemma": "vervollständigen",
+   "du": "Vervollständige",
+   "sie": "Vervollständigen Sie",
+   "afb": "I",
+   "gruppe": "ergänzen",
+   "quelle": "ISB"
+  },
+  {
+   "lemma": "aufstellen",
+   "du": "Stelle auf",
+   "sie": "Stellen Sie auf",
+   "afb": "I",
+   "gruppe": "aufstellen",
+   "quelle": "ISB",
+   "enthalten": "auf"
+  },
+  {
+   "lemma": "aufzeigen",
+   "du": "Zeige auf",
+   "sie": "Zeigen Sie auf",
+   "afb": "I",
+   "gruppe": "nachweisen",
+   "quelle": "ISB+AP",
+   "enthalten": "auf"
+  },
+  {
+   "lemma": "belegen",
+   "du": "Belege",
+   "sie": "Belegen Sie",
+   "afb": "I",
+   "gruppe": "nachweisen",
+   "quelle": "ISB"
+  },
+  {
+   "lemma": "widerlegen",
+   "du": "Widerlege",
+   "sie": "Widerlegen Sie",
+   "afb": "I",
+   "gruppe": "nachweisen",
+   "quelle": "ISB"
+  },
+  {
+   "lemma": "berechnen",
+   "du": "Berechne",
+   "sie": "Berechnen Sie",
+   "afb": "II",
+   "gruppe": "rechnen",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "ermitteln",
+   "du": "Ermittle",
+   "sie": "Ermitteln Sie",
+   "afb": "II",
+   "gruppe": "rechnen",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "bestimmen",
+   "du": "Bestimme",
+   "sie": "Bestimmen Sie",
+   "afb": "II",
+   "gruppe": "rechnen",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "den Buchungssatz bilden",
+   "du": "Bilde",
+   "sie": "Bilden Sie",
+   "afb": "II",
+   "gruppe": "buchen",
+   "quelle": "ISB+AP",
+   "enthalten": "Buchungssatz"
+  },
+  {
+   "lemma": "im Konto buchen",
+   "du": "Buche",
+   "sie": "Buchen Sie",
+   "afb": "II",
+   "gruppe": "buchen",
+   "quelle": "ISB",
+   "enthalten": "Konto"
+  },
+  {
+   "lemma": "zeichnen",
+   "du": "Zeichne",
+   "sie": "Zeichnen Sie",
+   "afb": "II",
+   "gruppe": "darstellen_grafisch",
+   "quelle": "ISB"
+  },
+  {
+   "lemma": "erstellen",
+   "du": "Erstelle",
+   "sie": "Erstellen Sie",
+   "afb": "II",
+   "gruppe": "darstellen_grafisch",
+   "quelle": "ISB"
+  },
+  {
+   "lemma": "erklären",
+   "du": "Erkläre",
+   "sie": "Erklären Sie",
+   "afb": "II",
+   "gruppe": "erklären",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "erläutern",
+   "du": "Erläutere",
+   "sie": "Erläutern Sie",
+   "afb": "II",
+   "gruppe": "erklären",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "begründen",
+   "du": "Begründe",
+   "sie": "Begründen Sie",
+   "afb": "II",
+   "gruppe": "erklären",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "abgrenzen",
+   "du": "Grenze",
+   "sie": "Grenzen Sie",
+   "afb": "II",
+   "gruppe": "abgrenzen",
+   "quelle": "ISB+AP",
+   "enthalten": "ab"
+  },
+  {
+   "lemma": "unterscheiden",
+   "du": "Unterscheide",
+   "sie": "Unterscheiden Sie",
+   "afb": "II",
+   "gruppe": "abgrenzen",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "vergleichen",
+   "du": "Vergleiche",
+   "sie": "Vergleichen Sie",
+   "afb": "II",
+   "gruppe": "abgrenzen",
+   "quelle": "ISB"
+  },
+  {
+   "lemma": "prüfen",
+   "du": "Prüfe",
+   "sie": "Prüfen Sie",
+   "afb": "II",
+   "gruppe": "prüfen",
+   "quelle": "ISB"
+  },
+  {
+   "lemma": "überprüfen",
+   "du": "Überprüfe",
+   "sie": "Überprüfen Sie",
+   "afb": "II",
+   "gruppe": "prüfen",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "charakterisieren",
+   "du": "Charakterisiere",
+   "sie": "Charakterisieren Sie",
+   "afb": "II",
+   "gruppe": "ableiten",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "herausarbeiten",
+   "du": "Arbeite",
+   "sie": "Arbeiten Sie",
+   "afb": "II",
+   "gruppe": "ableiten",
+   "quelle": "ISB",
+   "enthalten": "heraus"
+  },
+  {
+   "lemma": "ableiten",
+   "du": "Leite",
+   "sie": "Leiten Sie",
+   "afb": "II",
+   "gruppe": "ableiten",
+   "quelle": "AP",
+   "enthalten": "ab"
+  },
+  {
+   "lemma": "schließen auf",
+   "du": "Schließe",
+   "sie": "Schließen Sie",
+   "afb": "II",
+   "gruppe": "ableiten",
+   "quelle": "AP",
+   "enthalten": "auf"
+  },
+  {
+   "lemma": "entscheiden",
+   "du": "Entscheide",
+   "sie": "Entscheiden Sie",
+   "afb": "II",
+   "gruppe": "entscheiden",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "durchführen",
+   "du": "Führe",
+   "sie": "Führen Sie",
+   "afb": "II",
+   "gruppe": "durchführen",
+   "quelle": "ISB+AP",
+   "enthalten": "durch"
+  },
+  {
+   "lemma": "formulieren",
+   "du": "Formuliere",
+   "sie": "Formulieren Sie",
+   "afb": "II",
+   "gruppe": "formulieren",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "skizzieren",
+   "du": "Skizziere",
+   "sie": "Skizzieren Sie",
+   "afb": "II",
+   "gruppe": "formulieren",
+   "quelle": "ISB"
+  },
+  {
+   "lemma": "zusammenfassen",
+   "du": "Fasse",
+   "sie": "Fassen Sie",
+   "afb": "II",
+   "gruppe": "formulieren",
+   "quelle": "ISB"
+  },
+  {
+   "lemma": "beurteilen",
+   "du": "Beurteile",
+   "sie": "Beurteilen Sie",
+   "afb": "III",
+   "gruppe": "werten",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "bewerten",
+   "du": "Bewerte",
+   "sie": "Bewerten Sie",
+   "afb": "III",
+   "gruppe": "werten",
+   "quelle": "ISB"
+  },
+  {
+   "lemma": "Stellung nehmen",
+   "du": "Nimm Stellung",
+   "sie": "Nehmen Sie Stellung",
+   "afb": "III",
+   "gruppe": "argumentieren",
+   "quelle": "ISB+AP"
+  },
+  {
+   "lemma": "diskutieren",
+   "du": "Diskutiere",
+   "sie": "Diskutieren Sie",
+   "afb": "III",
+   "gruppe": "argumentieren",
+   "quelle": "AP"
+  },
+  {
+   "lemma": "interpretieren",
+   "du": "Interpretiere",
+   "sie": "Interpretieren Sie",
+   "afb": "III",
+   "gruppe": "argumentieren",
+   "quelle": "ISB"
+  }
+ ]
+}
