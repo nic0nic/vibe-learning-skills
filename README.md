@@ -9,6 +9,7 @@ Skills für [claude.ai](https://claude.ai) für Lehrkräfte an bayerischen Reals
 | [`bwr-uebungsaufgaben`](bwr-uebungsaufgaben/SKILL.md) | BwR-Übungsaufgaben (Angabe + Lösung) nach ISB-Handreichung: Buchungssätze, Belege, Operatoren, Punkte. |
 | [`bwr-aufgabenstellungen-afb`](bwr-aufgabenstellungen-afb/SKILL.md) | Operationalisierte BwR-Aufgabenstellungen nach Anforderungsbereichen I–III, AP-nah, je Jahrgangsstufe. |
 | [`bwr-bewertung-musterloesung`](bwr-bewertung-musterloesung/SKILL.md) | Punktevergabe, Umfang (1 Punkt ≈ 1 Minute) und Musterlösungen für BwR-Leistungsnachweise. |
+| [`bwr-ap-lehrplan-mapping`](bwr-ap-lehrplan-mapping/SKILL.md) | Ordnet Aufgaben der BwR-Abschlussprüfungen 2023–2025 den Lernbereichen der Jgst. 7–10 zu. |
 | [`it-aufgaben-operationalisieren`](it-aufgaben-operationalisieren/SKILL.md) | Operationalisierte Aufgabenstellungen für IT/Informatik mit rotierenden Operatoren. |
 | [`gruppen-arbeitsblaetter`](gruppen-arbeitsblaetter/SKILL.md) | Arbeitsblätter mit Gruppenvarianten, die beim Austeilen automatisch ausgeglichene Gruppen ergeben. |
 | [`praesentation-zu-mkslides`](praesentation-zu-mkslides/SKILL.md) | Wandelt .pdf/.pptx in eine mkslides-`slides.md` mit Bildern, Arbeitsaufträgen und Gruppen-Direktiven um. |

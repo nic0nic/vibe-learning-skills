@@ -1,0 +1,279 @@
+pruefung,aufgabe,lb_haupt,lb_neben,thema,typ,konten
+2023/HT,1.1,8.4,,"Ausgangsrechnung: Aussagen zum Beleg prüfen (Rabatt, Zahlungsbedingungen)",MC,
+2023/HT,1.2,8.4,8.3,Treuerabatt: Grund der Gewährung (Kundenbindung),TX,
+2023/HT,1.3,8.4,8.1,"Buchungssatz Ausgangsrechnung (Rabatt, Bezugskosten, USt)",BS,"2400 FO, 5000 UEFE, 4800 UST"
+2023/HT,1.4,8.4,,Zahlungseingang mit Skonto buchen,BS,"2800 BK, 5001 EBFE, 4800 UST, 2400 FO"
+2023/HT,1.5.1,8.3,,Produktlebenszyklus: Phase benennen,TX,
+2023/HT,1.5.2,8.3,,Produktlebenszyklus/Programmgestaltung: Aussagen richtig/falsch,MC,
+2023/HT,2.1,9.4,,Geldanlage in Gold (magisches Dreieck),TX,
+2023/HT,2.2.1,9.4,,Nachhaltige Geldanlage: Kriterium,TX,
+2023/HT,2.2.2,9.4,,Aktienkauf inkl. Spesen buchen,BS,
+2023/HT,2.3,9.4,,Kontoauszug: Dividende und Depotgebühren buchen,BS,"2800 BK, 5780 DDE, 6750 KGV"
+2023/HT,2.4,9.4,,"Aktienverkauf mit Spesen, Kursgewinn/-verlust buchen",BS,2800 BK
+2023/HT,3.1,10.4,,Betriebsergebnis aus Deckungsbeitrag und Fixkosten (Art und Höhe),BE,
+2023/HT,3.2,10.4,,Aussage zur Fixkostensenkung beurteilen,TX,
+2023/HT,3.3,10.4,,Kapazitätsauslastung in Prozent,BE,
+2023/HT,3.4.1,10.4,,Produktentscheidung nach Deckungsbeitrag (Engpass),BE,
+2023/HT,3.4.2,8.3,,Verkaufsfördernde Maßnahme empfehlen,TX,
+2023/HT,3.4.3,9.1,,Führungsstil ableiten,TX,
+2023/HT,3.5,10.4,,Make-or-buy: Eigenfertigung vs. Fremdbezug (Knöpfe),BE,
+2023/HT,4.1,9.2,,Investitionsziel ableiten,TX,
+2023/HT,4.2,9.3,,Eigenfinanzierung: Grund,TX,
+2023/HT,4.3.1,9.3,,"Infografik Finanzierung: Aussagen richtig/falsch (Einlage, Erbschaft)",MC,
+2023/HT,4.3.2,9.3,,Prozentanteil berechnen (Eigenmittel),BE,
+2023/HT,4.4.1,9.2,,Angebotsvergleich Maschine: Gesamtkosten pro Jahr (Kostenvergleichsrechnung),BE,
+2023/HT,4.4.2,9.2,,Neben Kosten weitere Entscheidungskriterien,TX,
+2023/HT,4.4.3,9.2,,"Rechnungseingang Anlage buchen (Anschaffungskosten, VORST)",BS,"0700 MA, 2600 VORST, 4400 VE"
+2023/HT,4.5,9.2,7.4,Belegauszug Büromöbel (Anlage/GWG bzw. Aufwand),BS,
+2023/HT,5.1.1,10.1,,Vorbereitender Abschluss: im Voraus bezahlte Versicherung (ARA),BS,2900 ARA
+2023/HT,5.1.2,9.2,,GWG-Abschreibung (0890 GWG an 6540 ABGWG),BS,"0890 GWG, 6540 ABGWG"
+2023/HT,5.2.1,9.1,7.5,Abschluss des Kontos 3000 EK (Privatkonto/Unternehmerlohn),BS,"3000 EK, 3001 P"
+2023/HT,5.2.2,10.2,,Eigenkapitalrentabilität berechnen und beurteilen,BE,
+2023/HT,5.3.1,10.2,,Anlagendeckung II berechnen und beurteilen (aufbereitete Bilanz),BE,
+2023/HT,5.3.2,10.2,,Zahlungsfähigkeit: Liquiditätskennzahl wählen,BE,
+2023/HT,6.1.1,10.3,,Anstieg der Materialgemeinkosten in Prozent,BE,
+2023/HT,6.1.2,10.3,,Grund für Kostenentwicklung,TX,
+2023/HT,6.1.3,10.3,,Materialgemeinkostenzuschlagssatz,BE,
+2023/HT,6.2,10.3,,Selbstkosten des Umsatzes (Gesamtkosten),BE,
+2023/HT,6.3,10.3,,Einzelkosten von Gemeinkosten unterscheiden,TX,
+2023/HT,6.4,7.4,10.3,Belegauszug Q4 buchen (Aufwand),BS,
+2023/HT,7.1.1,9.5,,Verzugszinssatz aus Basiszinssatz berechnen,BE,
+2023/HT,7.1.2,9.5,,Informationsquelle Basiszinssatz,TX,
+2023/HT,7.2,9.5,,Belegauszug zu Mahnung/Zahlungsverzug buchen,BS,
+2023/HT,7.3,9.5,,Insolvenz: Forderungsausfall buchen,BS,"6950 ABFO, 4800 UST, 2400 FO"
+2023/HT,7.4,9.5,,Absicherung gegen künftige Forderungsausfälle,TX,
+2023/HT,7.5,9.5,10.1,Pauschalwertberichtigung (allgemeines Ausfallrisiko 1 %) buchen,BS,
+2023/HT,8.1,8.3,,Programmgestaltung: Art ableiten (Produktvariation),TX,
+2023/HT,8.2,8.2,,Einstandspreis berechnen (Angebotsvergleich Lieferer),BE,
+2023/HT,8.3.1,8.2,,Eingangsrechnung Werkstoff buchen,BS,"6000 AWR, 2600 VORST, 4400 VE"
+2023/HT,8.3.2,8.2,,Rücksendung/Gutschrift buchen,BS,"4400 VE, 6002 NR, 2600 VORST"
+2023/HT,8.4,8.2,,Vorteil größerer Bestellmenge (Just-in-time),TX,
+2023/NT,1.1,8.2,8.1,Eingangsrechnung (Leihverpackung) buchen,BS,"AW, 2600 VORST, 4400 VE"
+2023/NT,1.2.1,8.2,,Leihverpackung: Vorteil,TX,
+2023/NT,1.2.2,8.2,,E-Mail/Beleg Leihverpackung buchen,BS,
+2023/NT,1.3,8.2,,Überweisung innerhalb Skontofrist buchen,BS,"4400 VE, 2800 BK, 6002 NR, 2600 VORST"
+2023/NT,1.4,8.2,,Grafik Bestellmenge/Lagerkosten: Lücken ergänzen,MC,
+2023/NT,2.1,9.1,,Kooperativer Führungsstil: Vorteil,TX,
+2023/NT,2.2,9.1,,Führungsstile/Führungstechniken: Vor- und Nachteile,TX,
+2023/NT,2.3,8.5,,Entgeltform Gewinnbeteiligung beschreiben,TX,
+2023/NT,2.4.1,8.5,,Lohn-/Gehaltsjournal: Personalaufwand buchen,BS,"6200 LG, 6400 AGASV, 4840 VSV"
+2023/NT,2.4.2,8.5,,Überweisung einbehaltener Sozialversicherungsbeiträge buchen,BS,
+2023/NT,2.4.3,8.5,,Freiwillige Personalzusatzkosten: Beispiel,TX,
+2023/NT,2.5,7.4,8.5,Belegbuchung Postgebühr (Einladung Betriebsfeier),BS,Kommunikation (6820 KOM)
+2023/NT,3.1,9.3,,Darlehensaufnahme/Finanzierung: Aussagen richtig/falsch,MC,
+2023/NT,3.2.1,9.3,,Darlehensarten abgrenzen,TX,
+2023/NT,3.2.2,9.3,,Goldene Finanzierungsregel erläutern,TX,
+2023/NT,3.2.3,9.3,,Darlehensvergleich rechnerisch (Effektivzins),BE,
+2023/NT,3.2.4,9.3,,Darlehensaufnahme buchen (Disagio),BS,"2800 BK, 4250 LBKV"
+2023/NT,3.2.5,9.2,,Abschreibung (linear) CNC-Fräsmaschine berechnen,BE,
+2023/NT,4.1.1,10.3,,Zuschlagsgrundlage Materialgemeinkosten,TX,
+2023/NT,4.1.2,10.3,,Selbstkosten je Stück berechnen,BE,
+2023/NT,4.1.3,10.3,,Kosteneinsparung Fertigungsgemeinkosten: Beispiel,TX,
+2023/NT,4.2.1,8.4,,Gewinn in Euro (Verkaufskalkulation Rückwärtskalkulation),BE,
+2023/NT,4.2.2,8.3,,Preisgestaltung: psychologische/Preisstrategie (Preis 1.199 €),TX,
+2023/NT,4.2.3,8.4,,Ausgangsrechnung mit Rabatt buchen,BS,"2400 FO, 5000 UEFE, 4800 UST"
+2023/NT,4.3.1,8.3,,Direkter Vertrieb: Vorteil,TX,
+2023/NT,4.3.2,8.3,7.4,Eingangsrechnung Unternehmensberatung buchen,BS,"Beratung, 2600 VORST, 4400 VE"
+2023/NT,5.1.1,8.6,,"Gewerbesteuer: Aussagen richtig/falsch (Gemeinde, Hebesatz, Standortfaktor)",MC,
+2023/NT,5.1.2,8.6,,Gewerbesteuereinnahmen berechnen (Zeitungsartikel),BE,
+2023/NT,5.2,8.6,,Gewerbesteuer berechnen/buchen,BS,7020 GRST bzw. Gewerbesteueraufwand
+2023/NT,5.3.1,8.6,,Grundsteuer von Grunderwerbsteuer abgrenzen,TX,
+2023/NT,5.3.2,8.6,,Grundsteuer buchen (Belegauszug),BS,7020 GRST
+2023/NT,6.1,8.3,,Preisdifferenzierung: Arten benennen,TX,
+2023/NT,6.2,8.3,,Skimming definieren (Preisstrategie),TX,
+2023/NT,6.3.1,8.3,,Infografik Werbung/Influencer: Aussagen prüfen,MC,
+2023/NT,6.3.2,8.3,,Anstieg Ausgaben Influencer in Prozent,BE,
+2023/NT,6.3.3,8.3,,Influencer-Rechnung (Werbung) buchen,BS,"6800 BMK bzw. Werbeaufwand, 2600 VORST"
+2023/NT,7.1.1,10.1,,Im Voraus bezahlte Kfz-Steuer (ARA),BS,"2900 ARA, 7030 KFZST"
+2023/NT,7.1.2,9.5,10.1,Pauschalwertberichtigung 1 % buchen,BS,
+2023/NT,7.2.1,10.2,,Barliquidität berechnen und beurteilen,BE,
+2023/NT,7.2.2,10.2,,Unternehmensentscheidung unabhängiger (Eigenkapitalquote),TX,
+2023/NT,7.2.3,10.2,,Vorteil hoher Eigenkapitalquote,TX,
+2023/NT,7.3,9.3,,Selbstfinanzierung der Photovoltaikanlage nachweisen (Cashflow/Gewinn),BE,
+2024/HT,1.1,8.4,,Ausgangsrechnung: Aussagen richtig/falsch,MC,
+2024/HT,1.2,8.4,,Lieferung frei Haus: Entscheidung begründen,TX,
+2024/HT,1.3,8.4,,Ausgangsrechnung buchen,BS,"2400 FO, 5000 UEFE, 4800 UST"
+2024/HT,1.4,8.4,,Zahlungseingang buchen (Skonto),BS,"2800 BK, 5001 EBFE"
+2024/HT,1.5.1,8.3,,Portfolio-Analyse: Position charakterisieren,TX,
+2024/HT,1.5.2,8.3,,Portfolio-Analyse: Normstrategie ableiten,TX,
+2024/HT,2.1.1,8.5,,Personalbeschaffung: interne/externe (Fachbegriff),TX,
+2024/HT,2.1.2,8.5,,Soft Skill eines Bewerbers,TX,
+2024/HT,2.1.3,9.1,,Aus Stellenausschreibung auf Führungsstil schließen,TX,
+2024/HT,2.2,8.5,,Lohn-/Gehaltsjournal: Personalaufwand buchen,BS,"6200 LG, 6400 AGASV"
+2024/HT,2.3,8.5,7.4,Belegbuchung (Personalnebenkosten/Aufwand),BS,
+2024/HT,2.4.1,8.5,,Infografik erneuerbare Energien: Anstieg Beschäftigte,BE,
+2024/HT,2.4.2,8.5,,Infografik: falsche Aussage erkennen,MC,
+2024/HT,3.1.1,10.3,,BAB: Verteilungsgrundlage Mietaufwendungen,TX,
+2024/HT,3.1.2,10.3,8.6,Betriebliche Steuern: Beispiel,TX,
+2024/HT,3.1.3,10.3,,Zusatzkosten im BAB,TX,
+2024/HT,3.1.4,10.3,,Fertigungsgemeinkostenzuschlagssatz,BE,
+2024/HT,3.1.5,10.3,,Selbstkosten des Umsatzes,BE,
+2024/HT,3.2.1,8.3,,Skimming: Vorteil,TX,
+2024/HT,3.2.2,8.3,8.4,"Preisfestlegung neues Produkt (Werte, Absatzpreis)",BE,
+2024/HT,4.1,9.2,,Investitionsziel ableiten,TX,
+2024/HT,4.2,9.3,,Form der Eigenfinanzierung,TX,
+2024/HT,4.3.1,9.3,,Effektive Verzinsung Kredit berechnen,BE,
+2024/HT,4.3.2,9.3,,Kreditentscheidung begründen,TX,
+2024/HT,4.4,9.3,,Öffentliches Förderprogramm als Finanzierung beschreiben,TX,
+2024/HT,4.5,9.2,7.4,Beleg Werbeschriftzug Lkw buchen,BS,
+2024/HT,5.1.1,10.1,,Rückstellung nach § 249 HGB begründen,TX,
+2024/HT,5.1.2,10.1,,Rückstellung bilden (vorbereitender Abschlussbuchungssatz),BS,
+2024/HT,5.2.1,10.1,,Darlehenszinsen im Voraus bezahlt/ARA/PRA,BS,
+2024/HT,5.2.2,9.5,10.1,Pauschalwertberichtigung,BS,
+2024/HT,5.3.1,10.2,,Anlagendeckung II berechnen und beurteilen,BE,
+2024/HT,5.3.2,10.2,,Zahlungsfähigkeit: Liquidität,BE,
+2024/HT,6.1,10.4,,Betriebsergebnis aus Deckungsbeiträgen (Art und Höhe),BE,
+2024/HT,6.2,10.4,,Zusatzauftrag annehmen? rechnerisch begründen,BE,
+2024/HT,6.3.1,8.3,,Absatzrückgang: möglicher Grund,TX,
+2024/HT,6.3.2,8.3,,Prozentualer Rückgang der Absatzmenge,BE,
+2024/HT,6.4.1,8.3,,Belegauszug Werbung buchen,BS,"Werbeaufwand, 2600 VORST"
+2024/HT,6.4.2,8.3,,Preissenkung: Auswirkung (Preisstrategie),TX,
+2024/HT,6.5,10.4,,Break-even-Menge Yoga,BE,
+2024/HT,7.1.1,8.6,,Steuerarten-Artikel: falsche Aussage,MC,
+2024/HT,7.1.2,8.6,,Prozentualer Anstieg Steuereinnahmen,BE,
+2024/HT,7.2.1,8.6,,Gewerbesteuer berechnen,BE,
+2024/HT,7.2.2,8.6,,Auswirkung Gewerbesteuer auf Erfolg,TX,
+2024/HT,7.3,8.6,,Gebühren/Steuern buchen (Belegauszug),BS,6730 GEB bzw. 7020 GRST
+2024/HT,7.4,8.6,8.1,Umsatzsteuer-Zahllast berechnen und buchen,BE,"4800 UST, 2600 VORST, 2800 BK"
+2024/HT,8.1,8.2,,Just-in-time: Vorteil und Nachteil,TX,
+2024/HT,8.2.1,9.2,,Grundstückskauf buchen,BS,"0500 GR, 6730 GEB"
+2024/HT,8.2.2,9.2,8.6,"Anschaffungskosten Grundstück/Nebenkosten (Notar, Grundbuch) Aussagen",MC,
+2024/HT,8.3,8.2,,"Bestellmenge/Lagerhaltung: Lagerkosten, optimale Bestellmenge",TX,
+2024/HT,8.4,10.1,,"Bestandsveränderung Werkstoffe (Inventurliste, vorbereitender Abschluss)",BS,6020 AWH bzw. 6000 AWR
+2024/NT,1.1,8.2,,Eingangsrechnung: Aussagen richtig/falsch,MC,
+2024/NT,1.2,8.2,,Zahlungsziel rein netto: Skonto/Zahlungsbedingung,TX,
+2024/NT,1.3,8.2,,Eingangsrechnung buchen,BS,"6000 AWR, 2600 VORST, 4400 VE"
+2024/NT,1.4,8.2,,Lieferantenwahl: weiteres Kriterium,TX,
+2024/NT,1.5.1,9.3,,Kontokorrentkredit beurteilen,TX,
+2024/NT,1.5.2,9.3,8.2,Skontoausnutzung vs. Kontokorrentzins rechnerisch,BE,
+2024/NT,1.6,8.2,,Überweisung innerhalb Skontofrist buchen,BS,"4400 VE, 2800 BK, 6002 NR, 2600 VORST"
+2024/NT,2.1,9.4,,Magisches Dreieck der Geldanlage,TX,
+2024/NT,2.2.1,9.4,,Infografik Geldanlage: Aussagen/Lücken,MC,
+2024/NT,2.2.2,9.4,,Prozentualer Zuwachs Aktienbesitzer,BE,
+2024/NT,2.2.3,9.4,,Vorteil Fonds,TX,
+2024/NT,2.3.1,9.4,,Dividende definieren,TX,
+2024/NT,2.3.2,9.4,,Weiterer Grund für Aktienkauf (Kursgewinn),TX,
+2024/NT,2.4,9.4,,Aktienkauf mit Spesen buchen,BS,
+2024/NT,2.5,9.4,,Belegauszug Wertpapierverkauf buchen,BS,
+2024/NT,3.1.1,10.3,,Sondereinzelkosten der Fertigung: Beispiel,TX,
+2024/NT,3.1.2,10.3,,Selbstkosten des Umsatzes,BE,
+2024/NT,3.2.1,8.4,,Listenverkaufspreis kalkulieren (Vorwärts-Kalkulation),BE,
+2024/NT,3.2.2,8.4,,Ausgangsrechnung mit Rabatt buchen,BS,"2400 FO, 5000 UEFE, 4800 UST"
+2024/NT,3.2.3,8.4,,Belegauszug Ausgangsrechnung/Rücksendung buchen,BS,
+2024/NT,4.1,10.3,10.4,Produktionszahlen/Kosten: Kostenarten zuordnen (fix/variabel),MC,
+2024/NT,4.2,10.4,,Betriebsergebnis (Art und Höhe),BE,
+2024/NT,4.3,10.4,,Eigenfertigung vs. Fremdbezug rechnerisch,BE,
+2024/NT,4.4.1,8.3,,Indirekter Vertrieb über Großhandel: Vorteil,TX,
+2024/NT,4.4.2,8.3,8.2,Beleg Großhändler buchen,BS,
+2024/NT,5.1,9.2,,Art der Investition,TX,
+2024/NT,5.2.1,9.2,,Amortisationszeit berechnen,BE,
+2024/NT,5.2.2,9.2,,Entscheidung neben Amortisation: weiteres Kriterium,TX,
+2024/NT,5.3.1,9.2,,Zielkauf Anlage buchen (Anlagenkarte),BS,"0700 MA, 2600 VORST, 4400 VE"
+2024/NT,5.3.2,9.2,,Ursache für Wertminderung (Abschreibung),TX,
+2024/NT,5.3.3,9.2,,Restbuchwert nach erstem Jahr,BE,
+2024/NT,6.1.1,9.1,,Organigramm: Leitungssystem erkennen,TX,
+2024/NT,6.1.2,9.1,,Vorteil des Leitungssystems,TX,
+2024/NT,6.1.3,9.1,,Hierarchieebene zuordnen,TX,
+2024/NT,6.2,9.1,,Führungsstil aus Aussage ableiten,TX,
+2024/NT,6.3.1,9.1,,Spende buchen (Privatentnahme),BS,"3001 P, 2800 BK"
+2024/NT,6.3.2,9.1,,Auswirkung Spende auf Eigenkapital,TX,
+2024/NT,6.3.3,9.1,,Abschluss des Kontos 3001 P,BS,"3000 EK, 3001 P"
+2024/NT,7.1.1,10.1,8.4,Saldo 5001 EBFE abschließen,BS,"5001 EBFE, 5000 UEFE"
+2024/NT,7.1.2,10.1,,Passive Rechnungsabgrenzung (Mieteinnahme im Voraus),BS,"5400 EMP, 4900 PRA"
+2024/NT,7.1.3,10.1,8.2,Bestandsveränderung Gummiräder (AB/SB),BS,"2010 F,  6010 AWF"
+2024/NT,7.1.4,9.2,,GWG-Abschreibung,BS,"0890 GWG, 6540 ABGWG"
+2024/NT,7.1.5,9.5,,Einzelwertberichtigung,BS,"6950 ABFO, 3670 EWB"
+2024/NT,7.2.1,10.2,,Ursache Veränderung langfristiges Kapital,TX,
+2024/NT,7.2.2,10.2,,Barliquidität berechnen und beurteilen,BE,
+2024/NT,7.2.3,10.2,,Eigenkapitalrentabilität vs. Marktzins,TX,
+2025/HT,1.1,8.2,,Eingangsrechnung: Aussagen richtig/falsch,MC,
+2025/HT,1.2,8.2,,Eingangsrechnung buchen,BS,"6000 AWR, 2600 VORST, 4400 VE"
+2025/HT,1.3.1,8.2,,Skontobetrag/Überweisungsbetrag berechnen,BE,
+2025/HT,1.3.2,8.2,,Überweisung innerhalb Skontofrist buchen,BS,
+2025/HT,1.4.1,8.2,,Lagerkosten: Beispiel,TX,
+2025/HT,1.4.2,8.2,,Optimale Bestellmenge aus Grafik,BE,
+2025/HT,2.1,9.4,,Aktienverkauf mit Spesen buchen,BS,
+2025/HT,2.2,9.4,,Depotgebühren buchen,BS,
+2025/HT,2.3.1,9.4,,Geldanlagekriterium aus magischem Dreieck,TX,
+2025/HT,2.3.2,9.4,,Spareinlagen aus Grafik berechnen,BE,
+2025/HT,2.4,9.4,,Zinsgutschrift Tagesgeld buchen,BS,"2800 BK, 5710 ZE"
+2025/HT,2.5,9.4,,ETF-Artikel: Aussagen,TX,
+2025/HT,3.1,10.4,,Betriebsergebnis (Art und Höhe),BE,
+2025/HT,3.2.1,10.4,,Zusatzauftrag annehmen: zwei Argumente,TX,
+2025/HT,3.2.2,10.4,8.4,Zielverkauf buchen,BS,"2400 FO, 5000 UEFE, 4800 UST"
+2025/HT,3.3.1,9.1,,Führungsstil ableiten,TX,
+2025/HT,3.3.2,8.3,,Werbeagentur: Online-Werbung buchen,BS,"6800 BMK, 2600 VORST, 4400 VE"
+2025/HT,3.4,10.4,,Make-or-buy (Eigenfertigung/Fremdbezug aus Grafik),BE,
+2025/HT,4.1.1,9.2,,Infografik Investitionen: Begriffe ergänzen,MC,
+2025/HT,4.1.2,9.2,,Prozentualer Anstieg der Investitionen,BE,
+2025/HT,4.2,9.2,,Weiteres Investitionsziel (Arbeitssicherheit),TX,
+2025/HT,4.3,9.2,,Angebotsvergleich/Anschaffungskosten berechnen,BE,
+2025/HT,4.4,9.2,,Anlagenkauf buchen,BS,"0700 MA, 2600 VORST, 4400 VE"
+2025/HT,4.5.1,9.2,,Restbuchwert zum 31.12.,BE,
+2025/HT,4.5.2,9.2,,Abschreibung buchen,BS,"6520 ABSA, 0700 MA"
+2025/HT,5.1,7.5,10.2,HGB § 242/§ 246 etc.: Bilanz und GuV Aussagen/Gesetzestext,MC,
+2025/HT,5.2.1,9.1,7.5,Abschluss des Kontos 3001 P,BS,"3000 EK, 3001 P"
+2025/HT,5.2.2,10.2,,Anlagendeckung II,BE,
+2025/HT,5.2.3,10.2,,Eigenkapitalrentabilität,BE,
+2025/HT,5.3.1,10.2,,Nachteil gesunkener Eigenkapitalquote,TX,
+2025/HT,5.3.2,10.2,,Interner Vergleich Einzugsliquidität,TX,
+2025/HT,6.1.1,9.5,,Grund für wirtschaftliche Probleme des Kunden,TX,
+2025/HT,6.1.2,9.5,,Umbuchung auf zweifelhafte Forderungen,BS,"2470 ZWFO, 2400 FO, 4800 UST"
+2025/HT,6.1.3,9.5,,Aussage zu Mahnung/Verzug beurteilen,TX,
+2025/HT,6.2,9.5,,Factoring diskutieren,TX,
+2025/HT,6.3,9.5,,Forderungsausfall (Insolvenz) buchen,BS,"6950 ABFO, 4800 UST, 2470 ZWFO"
+2025/HT,6.4.1,9.5,,Geschätzten Ausfall in Prozent berechnen,BE,
+2025/HT,6.4.2,9.5,,Einzelwertberichtigung buchen,BS,"6950 ABFO, 3670 EWB"
+2025/HT,7.1.1,8.2,,Einstandspreis berechnen (Einkaufskalkulation),BE,
+2025/HT,7.1.2,8.2,,Kriterium der Lieferantenwahl,TX,
+2025/HT,7.2.1,10.1,,Geschäftsfall zu Abschlussbuchung formulieren,TX,
+2025/HT,7.2.2,10.1,,Buchungssatz zu Kontoeintrag,BS,
+2025/HT,7.3,10.1,,Miete im Voraus (ARA),BS,"2900 ARA, Mietaufwand"
+2025/HT,8.1,8.3,,Produktlebenszyklus: Phase ableiten,TX,
+2025/HT,8.2,8.3,,Programmgestaltung: Veränderung,TX,
+2025/HT,8.3.1,8.3,,Vertriebswege direkt/indirekt zuordnen,MC,
+2025/HT,8.3.2,8.3,8.4,Rechnung (Auszug) buchen,BS,
+2025/HT,8.4,10.3,,"Herstellkosten prüfen (Materialkosten, Zuschläge)",BE,
+2025/HT,8.5,8.4,10.3,Listenverkaufspreis berechnen (Kundenangebot),BE,
+2025/NT,1.1,8.4,,"Preisnachlässe im Beleg zuordnen (Rabatt, Skonto, Treuerabatt)",MC,
+2025/NT,1.2,8.4,,Ausgangsrechnung buchen,BS,"2400 FO, 5000 UEFE, 4800 UST"
+2025/NT,1.3,8.4,,Zahlungseingang buchen (Skonto),BS,"2800 BK, 5001 EBFE"
+2025/NT,1.4,8.3,,Vertriebsweg aus Grafik (direkt/indirekt),TX,
+2025/NT,1.5,8.4,,Gewinn Kundenanfrage (Differenzkalkulation),BE,
+2025/NT,2.1.1,10.1,,Rückstellungen: Aussage beurteilen,TX,
+2025/NT,2.1.2,7.4,10.1,Reparatur-Rechnung buchen (Rückstellung auflösen),BS,"Instandhaltung, RST"
+2025/NT,2.2.1,9.2,,Anschaffungskosten Computer berechnen,BE,
+2025/NT,2.2.2,9.2,,GWG/Anschaffungskosten: Aussagen,MC,
+2025/NT,2.3,9.2,,GWG-Kauf buchen (T-Konto 0890 GWG),BS,"0890 GWG, 4400 VE, 2600 VORST"
+2025/NT,3.1.1,8.5,,Infografik Erwerbstätige: Begriffe/Werte,MC,
+2025/NT,3.1.2,8.5,,Anstieg der Erwerbstätigen in Prozent,BE,
+2025/NT,3.1.3,8.5,,Anteil produzierendes Gewerbe berechnen,BE,
+2025/NT,3.2,8.5,,Teilzeit: Arbeitsform beschreiben,TX,
+2025/NT,3.3.1,8.5,,Lohn-/Gehaltsjournal: Personalaufwand buchen,BS,"6200 LG, 6400 AGASV"
+2025/NT,3.3.2,8.5,,Arbeitgeberanteil zur SV: Personalzusatzkosten,TX,
+2025/NT,3.3.3,8.5,7.4,Belegbuchung (Kontoauszug/Personalnebenkosten),BS,
+2025/NT,4.1,9.3,,Finanzierungsformen zuordnen (Gedanken I–III),MC,
+2025/NT,4.2,9.3,7.4,Steuerberatung-Rechnung buchen,BS,"Beratungsaufwand, 2600 VORST, 4400 VE"
+2025/NT,4.3.1,9.3,,Kreditvergleich (Effektivzins) begründen,BE,
+2025/NT,4.3.2,9.3,,Kreditauszahlung buchen,BS,"2800 BK, 4250 LBKV"
+2025/NT,4.3.3,9.3,,Festdarlehen: Tilgungsart beschreiben,TX,
+2025/NT,4.4,9.3,,Leasing: Vorteil und Nachteil,TX,
+2025/NT,5.1.1,10.3,,Materialgemeinkostenzuschlagssatz,BE,
+2025/NT,5.1.2,10.3,,Sondereinzelkosten der Fertigung: Beispiel,TX,
+2025/NT,5.1.3,10.3,,Kostenrechnung: Aussagen richtig/falsch,MC,
+2025/NT,5.2,7.4,,Strom-Abschlagszahlung buchen (Betriebsstoffe),BS,"6030 AWB, 2600 VORST, 2800 BK"
+2025/NT,5.3,10.3,,Selbstkosten des Umsatzes aus Herstellkosten der Erzeugung,BE,
+2025/NT,6.1.1,8.6,,Wirkung der Grundsteuer auf Gewinn,TX,
+2025/NT,6.1.2,8.6,,"Gewerbesteuer berechnen (Gewerbeertrag, Hebesatz)",BE,
+2025/NT,6.1.3,8.6,,Standortfaktoren (hart/weich),TX,
+2025/NT,6.2,8.6,8.1,Konto UST/VORST: Zahllast berechnen und buchen,BS,"4800 UST, 2600 VORST, 2800 BK"
+2025/NT,6.3,8.6,,Gebühren und Steuern abgrenzen,TX,
+2025/NT,6.4,8.6,,Belegauszug Gebühren/Steuern buchen,BS,"6730 GEB, 7020 GRST"
+2025/NT,7.1.1,10.1,,Bestandsveränderung Elektronikbauteile (Inventur),BS,6020 AWH bzw. 6000 AWR
+2025/NT,7.1.2,10.1,,Zeitliche Abgrenzung: Online-Werbung im Voraus bezahlt (ARA),BS,"2900 ARA, 6800 BMK"
+2025/NT,7.2,9.5,10.1,Pauschalwertberichtigung 2 % berechnen,BE,
+2025/NT,7.3.1,10.2,,Barliquidität,BE,
+2025/NT,7.3.2,10.2,,Anlagendeckung II,BE,
+2025/NT,7.3.3,10.2,,Eigenkapitalquote,BE,
+2025/NT,7.3.4,10.2,,Vergleich mit Branchenwert beurteilen,TX,
+2025/NT,7.3.5,10.2,,Vorteil hoher Eigenkapitalquote,TX,
