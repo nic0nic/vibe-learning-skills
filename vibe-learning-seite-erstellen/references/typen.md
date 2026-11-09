@@ -17,10 +17,14 @@ Bei genau einer richtigen Antwort wird beim Antippen sofort geprüft.
 {"typ": "zahlen", "frage": "Berechne das Disagio und den Auszahlungsbetrag.", "felder": [{"t": "Disagio", "l": 1000, "e": "€", "h": "Kreditbetrag · 2 : 100"}, {"t": "Auszahlungsbetrag", "l": 49000, "e": "€"}]}
 ```
 
-## luecken – Lückentext mit Auswahllisten
+## luecken – Lückentext mit Auswahllisten oder Wortbank
 `text` mit Lücken `[[richtig|falsch|falsch]]` – die **erste** Antwort ist richtig (Anzeige gemischt). HTML im Text erlaubt (`<br>`, `<b>`).
 ```json
 {"typ": "luecken", "frage": "Vervollständige.", "text": "Der Kontokorrentkredit ist [[kurzfristig|langfristig]] und vergleichsweise [[teuer|günstig]]."}
+```
+**Wortbank zum Ziehen** statt Auswahllisten: `"ziehen": true`. Die Bank enthält je Lücke das richtige Wort, die falschen Antworten aller Lücken und `extra` (weitere Ablenker, optional). `[[Wort]]` ohne `|` reicht hier.
+```json
+{"typ": "luecken", "ziehen": true, "frage": "Ziehe die Wörter in die Lücken.", "text": "Die Bank prüft die [[Kreditwürdigkeit]] und verlangt [[Sicherheiten|Skonto]].", "extra": ["Rabatt"]}
 ```
 
 ## zuordnen – Karten in Felder ziehen

@@ -87,8 +87,12 @@ def aufgabe(a, wo, f):
         if not l:
             f.append(f"{wo}: keine Lücke [[richtig|falsch]] im Text")
         for x in l:
-            if len(x.split("|")) < 2:
+            if not a.get("ziehen") and len(x.split("|")) < 2:
                 f.append(f"{wo}: Lücke [[{x}]] braucht mindestens zwei Antworten, die richtige zuerst")
+            if not x.split("|")[0].strip():
+                f.append(f"{wo}: Lücke [[{x}]] ohne richtiges Wort")
+        if a.get("extra") is not None and not (isinstance(a["extra"], list) and all(text(w) for w in a["extra"])):
+            f.append(f"{wo}: „extra“ muss eine Liste von Wörtern sein")
     if typ == "zuordnen" and isinstance(a.get("felder"), list) and isinstance(a.get("karten"), list):
         ids = [x[0] if isinstance(x, list) and x else None for x in a["felder"]]
         if len(ids) < 2:

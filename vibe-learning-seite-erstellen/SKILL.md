@@ -11,10 +11,10 @@ Ziel: mit **wenig Text** (die Lehrkraft hat evtl. nur wenige Credits) einen **g�
 
 1. **Klären (höchstens eine Rückfrage):** Fach, Jahrgangsstufe, Thema, ungefährer Umfang. Was die Lehrkraft schon gesagt oder hochgeladen hat, nicht erneut fragen. Fehlt nur Kleines, sinnvoll annehmen.
 2. **Aufgabentypen wählen** – nur diese gibt es (Felder und Beispiele: `references/typen.md`, nur bei Bedarf lesen):
-   `mc` Multiple Choice · `zahlen` Zahleneingabe · `luecken` Lückentext mit Auswahllisten · `zuordnen` Karten in Felder ziehen · `freitext` Begriffe eingeben (mit Tippfehlererkennung) · `chat` Lern-Chat Schritt für Schritt · `buchungssatz` Buchungssatz bilden · `tabelle` Tabelle ausfüllen (z. B. Tilgungsplan)
+   `mc` Multiple Choice · `zahlen` Zahleneingabe · `luecken` Lückentext mit Auswahllisten oder Wortbank zum Ziehen · `zuordnen` Karten in Felder ziehen · `freitext` Begriffe eingeben (mit Tippfehlererkennung) · `chat` Lern-Chat Schritt für Schritt · `buchungssatz` Buchungssatz bilden · `tabelle` Tabelle ausfüllen (z. B. Tilgungsplan)
    Passt nichts davon: siehe „Fehlender Aufgabentyp“.
 3. **JSON ausgeben:** genau **ein** Codeblock ```json …```, davor höchstens ein Satz, danach diese Hinweise (kurz):
-   > Kopiere den Block auf **https://vl.nimals.de/vorlage.html**, klicke „Prüfen und Vorschau“ und probiere die Übung aus. Als Lehrkraft kannst du sie dort einem Bereich zuordnen und einreichen – oder als Datei herunterladen.
+   > Kopiere den Block auf **https://vl.nimals.de/vorlage.html** (Ansicht „JSON“), klicke „Im Editor öffnen“ und bearbeite die Übung dort bei Bedarf weiter (Ziehen und Ablegen). „▶ Vorschau“ zeigt sie so, wie Schüler sie sehen. Als Lehrkraft kannst du sie einem Bereich zuordnen und einreichen – oder als Datei herunterladen.
 4. **Änderungswünsche:** den **vollständigen** JSON-Block neu ausgeben (er wird komplett eingefügt), ohne Wiederholung der Erklärungen.
 5. **Wenn Code-Ausführung verfügbar ist:** vor der Ausgabe `python3 scripts/pruefe.py datei.json` laufen lassen und Fehler beheben. Sonst die Regeln unten selbst einhalten.
 
