@@ -61,3 +61,9 @@ Jgst. 7: Konten ohne Nummer, z. B. `"konten": ["BK", "UEFE", "UST", "VORST"]`.
 ```json
 {"typ": "tabelle", "frage": "Vervollständige den Tilgungsplan.", "einheit": "€", "spalten": ["Jahr", "Restschuld am Jahresanfang", "Zinsen (5 %)", "Tilgung", "Rate", "Restschuld am Jahresende"], "zeilen": [["1", 40000, {"l": 2000}, 10000, {"l": 12000}, {"l": 30000}], ["2", {"l": 30000}, {"l": 1500}, 10000, {"l": 11500}, {"l": 20000}]], "hinweise": {"2": "Zinsen = Restschuld am Jahresanfang · 5 : 100", "4": "Rate = Zinsen + Tilgung"}}
 ```
+
+## wahrheit – ja/nein-Tabelle (z. B. Wahrheitstabelle UND/ODER)
+`spalten` (Spaltenköpfe, HTML erlaubt), `zeilen`: je Zeile genau so viele Zellen. `true`/`false` = vorgegeben (wird als „ja“/„nein“ angezeigt), Text oder Zahl = vorgegeben, `{"l": true}` bzw. `{"l": false}` = Feld zum Anklicken (leer → ja → nein → ja …). Optional `werte` (zwei Wörter statt `["ja", "nein"]`, z. B. `["WAHR", "FALSCH"]`), `hinweise` (`{"Spaltenindex": "Regel"}`, erscheint bei Fehlern in dieser Spalte).
+```json
+{"typ": "wahrheit", "frage": "Fülle die Tabelle für UND und ODER aus.", "spalten": ["Bedingung 1", "Bedingung 2", "UND", "ODER"], "zeilen": [[true, true, {"l": true}, {"l": true}], [true, false, {"l": false}, {"l": true}], [false, true, {"l": false}, {"l": true}], [false, false, {"l": false}, {"l": false}]], "hinweise": {"2": "UND: nur ja, wenn beide erfüllt sind.", "3": "ODER: ja, sobald eine erfüllt ist."}}
+```

@@ -10,7 +10,7 @@ import json, re, sys
 TYPEN = {
     "mc": ["options", "correct"], "zahlen": ["felder"], "luecken": ["text"], "zuordnen": ["felder", "karten"],
     "freitext": ["felder", "antworten"], "chat": ["nachrichten"], "buchungssatz": ["konten", "soll", "haben"],
-    "tabelle": ["spalten", "zeilen"],
+    "tabelle": ["spalten", "zeilen"], "wahrheit": ["spalten", "zeilen"],
 }
 MAX = 150000
 VERBOTEN = re.compile(r"<\s*script|\bon[a-z]+\s*=|javascript:|<\s*iframe|<\s*object|<\s*embed", re.I)
@@ -135,6 +135,23 @@ def aufgabe(a, wo, f):
                         felder += 1
         if not felder:
             f.append(f"{wo}: keine Eingabefelder ({{\"l\": Lösung}}) in der Tabelle")
+    if typ == "wahrheit" and isinstance(a.get("spalten"), list) and isinstance(a.get("zeilen"), list):
+        felder = 0
+        for i, r in enumerate(a["zeilen"]):
+            if not isinstance(r, list) or len(r) != len(a["spalten"]):
+                f.append(f"{wo}, Zeile {i + 1}: braucht genau {len(a['spalten'])} Zellen (wie „spalten“)")
+                continue
+            for j, c in enumerate(r):
+                if isinstance(c, dict):
+                    if not isinstance(c.get("l"), bool):
+                        f.append(f"{wo}, Zeile {i + 1}, Spalte {j + 1}: Feld braucht „l“ (true oder false)")
+                    else:
+                        felder += 1
+        if not felder:
+            f.append(f"{wo}: keine Felder zum Anklicken ({{\"l\": true/false}}) in der Tabelle")
+        w = a.get("werte")
+        if w is not None and not (isinstance(w, list) and len(w) == 2 and all(isinstance(x, str) and x.strip() for x in w)):
+            f.append(f"{wo}: „werte“ braucht genau zwei Wörter, z. B. [\"ja\", \"nein\"]")
     if a.get("danach"):
         aufgabe(a["danach"], wo + " → danach", f)
 
