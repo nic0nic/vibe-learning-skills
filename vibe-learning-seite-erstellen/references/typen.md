@@ -5,7 +5,7 @@ Vollständiges Beispiel einer Reihe: `beispiel.json`.
 Formel mit Bruchstrich in jedem HTML-Text: `<span class=\"bruch\"><span>Restschuld · Zinssatz</span><span>100</span></span>`.
 
 ## mc – Multiple Choice
-`options` (Texte), `correct` (Indizes ab 0; mehrere = Mehrfachauswahl), `why` (Erklärung je falscher Antwort, Schlüssel = Index als Text), `after` (Text nach Erfolg). Optional `multi: true` (Mehrfachauswahl, auch wenn nur eine richtig ist), `mischen: false` (Reihenfolge behalten, z. B. bei „alle …“).
+`options` (Texte), `correct` (Indizes ab 0; mehrere = Mehrfachauswahl), `why` (Erklärung je falscher Antwort, Schlüssel = Index als Text), `after` (Text nach Erfolg). Optional `multi: true` (Mehrfachauswahl, auch wenn nur eine richtig ist), `mischen: false` (Reihenfolge behalten, z. B. bei „alle …“). Antworten sind reiner Text (ein `<` bleibt ein `<`). Für Brüche oder Formatierung in den Antworten `"html": true` setzen, dann sind sie HTML wie die anderen Texte, z. B. `{"typ": "mc", "html": true, "options": ["<span class=\"bruch\"><span>1</span><span>3</span></span>", "…"], …}`.
 Bei genau einer richtigen Antwort wird beim Antippen sofort geprüft.
 ```json
 {"typ": "mc", "frage": "Was bedeutet Kreditfähigkeit?", "options": ["rechtliche Fähigkeit, einen Kreditvertrag abzuschließen", "Fähigkeit, den Kredit zurückzuzahlen"], "correct": [0], "why": {"1": "Das ist die Kreditwürdigkeit."}}
