@@ -352,6 +352,9 @@ def training(t, wo, f):
             if isinstance(wb, dict) and wb.get("richtung") not in (None, "a-b", "b-a", "beide"): f.append(f"{ws}: „richtung“ ist \"a-b\", \"b-a\" oder \"beide\"")
 
 
+DESIGNS = ("standard", "kommandozeile")   # wie lib/designs.js in vibe learning
+
+
 def pruefe(j):
     if not isinstance(j, dict):
         return ["Das ist kein Aufgaben-JSON (Objekt mit „titel“ und „schritte“ erwartet)."]
@@ -363,6 +366,8 @@ def pruefe(j):
         f.append("Eigenes JavaScript (script, onclick=, javascript:, iframe …) ist nicht erlaubt.")
     if not text(j.get("titel")):
         f.append("„titel“ fehlt.")
+    if j.get("design") is not None and j.get("design") not in DESIGNS:
+        f.append(f"Das Design „{j['design']}“ gibt es nicht (möglich: {', '.join(DESIGNS)}).")
     for k, wo in (("titel", "Titel"), ("kurztext", "Kurztext")):
         if j.get(k) is not None:
             alle_texte(j[k], wo, f)
