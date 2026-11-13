@@ -33,6 +33,9 @@
        {"bot": "Wer prüft die Kreditwürdigkeit?", "antworten": [{"t": "die Bank", "ok": true, "r": "Genau!"}, {"t": "der Kunde", "r": "Nein, die Bank prüft vor der Vergabe."}]}]}]},
     {"kurz": "Überblick", "titel": "Überblick",
      "aufgaben": [{"typ": "luecken", "frage": "Vervollständige den Überblick.",
-       "text": "<b>Schuldendienst</b> = [[Zinsen|Skonto]] + [[Tilgung|Kreditlinie]]"}]}
+       "text": "<b>Schuldendienst</b> = [[Zinsen|Skonto]] + [[Tilgung|Kreditlinie]]"}]},
+    {"kurz": "Kopfrechnen", "titel": "Prozente im Kopf", "html": "<p>Wie viel sind p % von einem Betrag? So schnell du kannst!</p>",
+     "training": {"antwort": "eingabe", "anzahl": 10, "zeit": {"start": 8, "schritt": -0.3, "min": 3},
+       "szenarien": [{"frage": "{p} % von {g} € =", "werte": {"p": {"aus": [1, 2, 5, 10, 20, 25, 50]}, "g": [100, 2000, 100]}, "loesung": "g * p / 100", "einheit": "€"}]}}
   ]
 }

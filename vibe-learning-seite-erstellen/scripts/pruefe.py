@@ -185,6 +185,173 @@ def aufgabe(a, wo, f):
         f.append(f"{wo}: „danach“ ist veraltet – stattdessen {{\"typ\": \"kombi\", \"teile\": [Aufgabe, Folgeaufgabe]}}")
 
 
+# ---------- Formeln der Trainings-Szenarien (wie lib/formel.js in vibe learning) ----------
+import math, random, re as _re
+_FUNK = {"runden": lambda x, n=0: math.floor(x * 10 ** n + 0.5 + 1e-9) / 10 ** n if x >= 0 else -math.floor(-x * 10 ** n + 0.5 + 1e-9) / 10 ** n,
+         "abs": abs, "min": min, "max": max, "wurzel": math.sqrt, "ganz": math.floor, "rest": lambda a, b: a % b}
+_WORT = {"und": "&&", "oder": "||", "nicht": "!"}
+
+
+def _lex(s):
+    t, i = [], 0
+    while i < len(s):
+        r = s[i:]
+        m = _re.match(r"\s+", r)
+        if m: i += m.end(); continue
+        m = _re.match(r"\d+(\.\d+)?", r)
+        if m: t.append(("zahl", float(m.group()))); i += m.end(); continue
+        m = _re.match(r"[A-Za-zÄÖÜäöüß_][A-Za-z0-9ÄÖÜäöüß_]*", r)
+        if m:
+            w = m.group().lower(); t.append(("op", _WORT[w]) if w in _WORT else ("name", m.group())); i += m.end(); continue
+        m = _re.match(r"(<=|>=|==|!=|<>|&&|\|\||[-+*/^()<>=,!·:×])", r)
+        if m:
+            v = {"·": "*", "×": "*", ":": "/", "<>": "!=", "=": "=="}.get(m.group(), m.group()); t.append(("op", v)); i += m.end(); continue
+        raise ValueError(f"Das Zeichen „{r[0]}“ kann ich nicht rechnen")
+    return t
+
+
+def _parse(s):
+    t, i = _lex(str(s)), [0]
+    ist = lambda v: i[0] < len(t) and t[i[0]] == ("op", v)
+    def binaer(nach, ops):
+        def f():
+            a = nach()
+            while any(ist(o) for o in ops):
+                o = t[i[0]][1]; i[0] += 1; a = ("o", o, a, nach())
+            return a
+        return f
+    def einst():
+        if ist("-"): i[0] += 1; return ("u", "-", einst())
+        if ist("!"): i[0] += 1; return ("u", "!", einst())
+        if ist("+"): i[0] += 1; return einst()
+        a = atom()
+        if ist("^"): i[0] += 1; return ("o", "^", a, einst())
+        return a
+    def atom():
+        if i[0] >= len(t): raise ValueError("Der Ausdruck endet zu früh")
+        art, v = t[i[0]]
+        if art == "zahl": i[0] += 1; return ("z", v)
+        if art == "name":
+            i[0] += 1
+            if ist("("):
+                if v.lower() not in _FUNK: raise ValueError(f"Die Funktion „{v}“ gibt es nicht")
+                i[0] += 1; args = []
+                if not ist(")"):
+                    while True:
+                        args.append(oder())
+                        if ist(","): i[0] += 1; continue
+                        break
+                if not ist(")"): raise ValueError(f"Bei „{v}(…)“ fehlt die schließende Klammer")
+                i[0] += 1; return ("f", v.lower(), args)
+            return ("n", v)
+        if ist("("):
+            i[0] += 1; e = oder()
+            if not ist(")"): raise ValueError("Es fehlt eine schließende Klammer )")
+            i[0] += 1; return e
+        raise ValueError(f"„{v}“ steht hier an der falschen Stelle")
+    produkt = binaer(einst, ["*", "/"]); summe = binaer(produkt, ["+", "-"])
+    vergleich = binaer(summe, ["<=", ">=", "==", "!=", "<", ">"]); und = binaer(vergleich, ["&&"]); oder = binaer(und, ["||"])
+    if not t: raise ValueError("Der Ausdruck ist leer")
+    e = oder()
+    if i[0] < len(t): raise ValueError(f"„{t[i[0]][1]}“ steht hier an der falschen Stelle" + (" – Kommazahlen mit Punkt schreiben (2.5)" if t[i[0]][1] == "," else ""))
+    return e
+
+
+def _namen(e, out):
+    if e[0] == "n": out.add(e[1])
+    elif e[0] == "o": _namen(e[2], out); _namen(e[3], out)
+    elif e[0] == "u": _namen(e[2], out)
+    elif e[0] == "f": [_namen(x, out) for x in e[2]]
+    return out
+
+
+def _rechne(e, w):
+    k = e[0]
+    if k == "z": return e[1]
+    if k == "n": return w[e[1]]
+    if k == "f": return _FUNK[e[1]](*[_rechne(x, w) for x in e[2]])
+    if k == "u": a = _rechne(e[2], w); return -a if e[1] == "-" else (0 if a else 1)
+    a, b = _rechne(e[2], w), _rechne(e[3], w)
+    return {"+": lambda: a + b, "-": lambda: a - b, "*": lambda: a * b, "/": lambda: a / b, "^": lambda: a ** b,
+            "<": lambda: a < b, "<=": lambda: a <= b, ">": lambda: a > b, ">=": lambda: a >= b, "==": lambda: abs(a - b) < 1e-9,
+            "!=": lambda: abs(a - b) >= 1e-9, "&&": lambda: bool(a and b), "||": lambda: bool(a or b)}[e[1]]()
+
+
+def formel_fehler(s, namen):
+    try:
+        fremd = sorted(_namen(_parse(s), set()) - set(namen))
+        return f"„{fremd[0]}“ ist kein festgelegter Wert (festgelegt: {', '.join(namen)})" if fremd else None
+    except ValueError as x:
+        return str(x)
+
+
+def szenario(sz, wo, f):
+    if not isinstance(sz, dict):
+        return f.append(f"{wo}: Szenario muss ein Objekt sein")
+    vorher = len(f)
+    if not text(sz.get("frage")): f.append(f"{wo}: Der Fragetext fehlt (z. B. „{{a}} + {{b}}“)")
+    werte = sz.get("werte") if isinstance(sz.get("werte"), dict) else None
+    if werte is None: f.append(f"{wo}: „werte“ fehlt (z. B. {{\"a\": [1, 10]}})")
+    bekannt = []
+    for k, v in (werte or {}).items():
+        if isinstance(v, list):
+            if not (2 <= len(v) <= 3 and all(zahl(x) for x in v)) or v[0] > v[1] or (len(v) == 3 and v[2] <= 0):
+                f.append(f"{wo}, Wert {k}: [von, bis] oder [von, bis, Schritt] (von ≤ bis, Schritt > 0)")
+        elif isinstance(v, dict):
+            if not (isinstance(v.get("aus"), list) and v["aus"] and all(zahl(x) for x in v["aus"])): f.append(f"{wo}, Wert {k}: braucht {{\"aus\": [Zahlen]}}")
+        elif isinstance(v, str):
+            e = formel_fehler(v, bekannt)
+            if e: f.append(f"{wo}, Wert {k} = {v}: {e}")
+        else:
+            f.append(f"{wo}, Wert {k}: [von, bis], {{\"aus\": […]}} oder Formel")
+        bekannt.append(k)
+    for feld, name in (("loesung", "Lösung"), ("bedingung", "Bedingung")):
+        if sz.get(feld) is None:
+            if feld == "loesung": f.append(f"{wo}: Die Lösung fehlt (Formel, z. B. „a + b“)")
+            continue
+        e = formel_fehler(str(sz[feld]), bekannt)
+        if e: f.append(f"{wo}: {name} „{sz[feld]}“: {e}")
+    for x in sz.get("falsch") or []:
+        e = formel_fehler(str(x), bekannt)
+        if e: f.append(f"{wo}: Falsche Antwort „{x}“: {e}")
+    for m in _re.finditer(r"\{=([^}]+)\}|\{([^}]*)\}", str(sz.get("frage") or "")):
+        if m.group(2) is not None and m.group(2) not in bekannt: f.append(f"{wo}: Im Fragetext steht {{{m.group(2)}}}, aber „{m.group(2)}“ ist kein festgelegter Wert")
+    if len(f) == vorher and sz.get("bedingung"):   # Probewürfeln: ist die Bedingung erfüllbar?
+        b, ok = _parse(sz["bedingung"]), False
+        for _ in range(200):
+            w = {}
+            for k, v in werte.items():
+                if isinstance(v, list): s = v[2] if len(v) == 3 else 1; w[k] = v[0] + random.randint(0, int((v[1] - v[0]) / s + 1e-9)) * s
+                elif isinstance(v, dict): w[k] = random.choice(v["aus"])
+                else: w[k] = _rechne(_parse(v), w)
+            if _rechne(b, w): ok = True; break
+        if not ok: f.append(f"{wo}: Die Bedingung ist auch nach 200 Versuchen nicht erfüllt – Wertebereiche oder Bedingung anpassen")
+
+
+def training(t, wo, f):
+    if not isinstance(t, dict):
+        return f.append(f"{wo}: „training“ muss ein Objekt sein")
+    if t.get("antwort") not in (None, "eingabe", "mc"): f.append(f"{wo}: „antwort“ ist \"eingabe\" oder \"mc\"")
+    if t.get("anzahl") is not None and not (isinstance(t["anzahl"], int) and 0 < t["anzahl"] <= 500): f.append(f"{wo}: „anzahl“ = Aufgaben pro Runde (1 bis 500) – oder weglassen für endlos")
+    z = t.get("zeit")
+    if z is not None and not (isinstance(z, dict) and zahl(z.get("start")) and z["start"] > 0): f.append(f"{wo}: Zeit: „start“ = Sekunden für die erste Aufgabe (größer als 0)")
+    stufen = t.get("stufen")
+    for k, s in enumerate(stufen if isinstance(stufen, list) and stufen else [t]):
+        ws = f"{wo}, Stufe {k + 1}" if stufen else wo
+        if not isinstance(s, dict): f.append(f"{ws}: Objekt erwartet"); continue
+        sz, wb = s.get("szenarien"), s.get("woerterbuch")
+        if not sz and not wb: f.append(f"{ws}: Es fehlen „szenarien“ (Zahlen) oder „woerterbuch“ (Vokabeln)"); continue
+        for i, x in enumerate(sz or []): szenario(x, f"{ws}, Szenario {i + 1}", f)
+        if wb is not None:
+            E = wb.get("eintraege") if isinstance(wb, dict) else None
+            if not isinstance(E, list) or not E: f.append(f"{ws}: Das Wörterbuch hat keine Einträge")
+            else:
+                for i, e in enumerate(E):
+                    if not (isinstance(e, list) and len(e) >= 2 and text(e[0]) and text(e[1])): f.append(f"{ws}, Eintrag {i + 1}: braucht zwei Seiten, z. B. [\"house\", \"Haus\"]")
+                if t.get("antwort") == "mc" and len(E) < 4: f.append(f"{ws}: Für Multiple Choice mindestens 4 Einträge")
+            if isinstance(wb, dict) and wb.get("richtung") not in (None, "a-b", "b-a", "beide"): f.append(f"{ws}: „richtung“ ist \"a-b\", \"b-a\" oder \"beide\"")
+
+
 def pruefe(j):
     if not isinstance(j, dict):
         return ["Das ist kein Aufgaben-JSON (Objekt mit „titel“ und „schritte“ erwartet)."]
@@ -209,8 +376,12 @@ def pruefe(j):
         if not isinstance(s, dict):
             f.append(f"{wo}: Objekt erwartet")
             continue
-        if not s.get("html") and not s.get("aufgaben"):
+        if not s.get("html") and not s.get("aufgaben") and not s.get("training"):
             f.append(f"{wo}: weder Erklärung („html“) noch Aufgaben")
+        if s.get("training") is not None:
+            training(s["training"], f"{wo}, Training", f)
+            if s.get("aufgaben"):
+                f.append(f"{wo}: Ein Schritt mit Training hat keine weiteren Aufgaben – lege dafür einen eigenen Schritt an")
         if s.get("aufgaben") is not None and not isinstance(s["aufgaben"], list):
             f.append(f"{wo}: „aufgaben“ muss eine Liste sein")
             continue

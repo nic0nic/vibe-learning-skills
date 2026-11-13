@@ -77,3 +77,25 @@ Jgst. 7: Konten ohne Nummer, z. B. `"konten": ["BK", "UEFE", "UST", "VORST"]`.
    "soll": [["4400 VE", 11900]], "haben": [["2800 BK", 11662], ["6002 NR", 200], ["2600 VORST", 38]], "steuer": ["2600 VORST"],
    "betraege": [["Rechnungsbetrag", 11900], ["Bruttoskonto", 238], ["Nettoskonto", 200], ["Steuerberichtigung", 38], ["Überweisungsbetrag", 11662]]}]}
 ```
+
+## Training-Schritt – Aufgaben auf Zeit und/oder endlos (Kopfrechnen, Vokabeln)
+Kein Aufgabentyp, sondern ein **Schritt** mit `"training"` statt `"aufgaben"`. Eine Aufgabe nach der anderen, Antwort eintippen (`"antwort": "eingabe"`) oder auswählen (`"mc"`, 4 Antworten, falsche automatisch).
+- `anzahl`: Aufgaben pro Runde (Ergebnis + Bestleistung). **Weglassen = endlos**: ein Fehler beendet die Serie, gezählt wird die Bestleistung.
+- `zeit`: `{"start": 5, "schritt": -0.1, "min": 1.5}` – Sekunden für die erste Aufgabe, Änderung je richtiger Antwort, Untergrenze. Weglassen = ohne Zeit.
+- `versuche: true`: Bei einem Fehler darf man es nochmal versuchen (sonst sofort Fehler, Lösung wird gezeigt). `ziel`: so viele richtige zählen den Schritt als erledigt (Standard: Runde beendet bzw. Serie ab 10).
+- Inhalt: `szenarien` (Zahlen) **oder** `woerterbuch` (Vokabeln) – oder `stufen: [{"name": "bis 20", "szenarien": […]}, {"name": "Lektion 2", "woerterbuch": {…}}]` (Flammen zum Wählen).
+- **Szenario**: `frage` mit `{a}` (Wert) oder `{=a*10}` (Ausdruck), `werte`: `[von, bis]`, `[von, bis, Schritt]`, `{"aus": [2, 5, 10]}` oder Formel aus früheren Werten (`"c": "a*b"`), `loesung` (Formel), optional `bedingung` (z. B. `"b <= a"`, es wird neu gewürfelt), `runden` (Nachkommastellen), `einheit`, `falsch` (typische falsche Antworten als Formeln, für mc). Formeln: `+ - * / ( ) ^`, Vergleiche, `und`/`oder`, `runden(x, 2)`, `abs`, `min`, `max`, `wurzel`, `ganz`, `rest`; Kommazahlen mit Punkt.
+- **Wörterbuch**: `sprachen` (zwei Namen), `richtung` `"a-b"` | `"b-a"` | `"beide"`, `eintraege` `[["house", "Haus|Gebäude"], …]` (`|` = mehrere richtige Antworten), `tippfehler: true` (fast richtig zählt). Für mc mindestens 4 Einträge.
+```json
+{"kurz": "Kopfrechnen", "titel": "Addition bis 20", "html": "<p>Rechne so schnell du kannst.</p>",
+ "training": {"antwort": "eingabe", "anzahl": 20, "zeit": {"start": 5, "schritt": -0.1, "min": 1.5},
+   "stufen": [{"name": "bis 10", "szenarien": [{"frage": "{a} + {b} =", "werte": {"a": [0, 10], "b": [0, 10]}, "bedingung": "a + b <= 10", "loesung": "a + b"}]},
+              {"name": "bis 20", "szenarien": [{"frage": "{a} + {b} =", "werte": {"a": [1, 19], "b": [1, 19]}, "bedingung": "a + b <= 20", "loesung": "a + b"},
+                                                {"frage": "{a} − {b} =", "werte": {"a": [2, 20], "b": [1, 20]}, "bedingung": "b <= a", "loesung": "a - b", "falsch": ["a + b"]}]}]}}
+```
+```json
+{"kurz": "Vokabeln", "titel": "Unit 3", "training": {"antwort": "mc", "woerterbuch": {"sprachen": ["Englisch", "Deutsch"], "richtung": "beide",
+   "eintraege": [["house", "Haus"], ["to go", "gehen"], ["tired", "müde"], ["cheese", "Käse"], ["bird", "Vogel"]]}}}
+```
+Im Editor („Übung erstellen“): Baustein „⏱ Training“; Vokabeln lassen sich aus Excel/CSV/Quizlet/Anki importieren.
+
