@@ -29,7 +29,7 @@ Ziel: mit **wenig Text** (die Lehrkraft hat evtl. nur wenige Credits) einen **g�
  ]}
 ```
 - `schritte` = Knöpfe oben auf der Seite (Erarbeitung). Ein Schritt hat Erklärung (`html`) und/oder `aufgaben` (mehrere möglich). Für eine einfache Aufgabenliste genügt statt `schritte` auch `"aufgaben": [...]`.
-- Je Aufgabe optional: `nr` (z. B. „5.1“), `frage`, `erinnerung`, `erinnerungZu: true` (Erinnerung startet zugeklappt, wenn sie die Lösung verraten würde), `material`, `ok` (Text bei Erfolg), `danach` (Folgeaufgabe, erscheint nach richtiger Lösung).
+- Je Aufgabe optional: `nr` (z. B. „5.1“), `frage`, `erinnerung`, `erinnerungZu: true` (Erinnerung startet zugeklappt, wenn sie die Lösung verraten würde), `material`, `ok` (Text bei Erfolg). Aufgaben, die nacheinander erscheinen sollen (erst rechnen, dann buchen …): `{"typ": "kombi", "teile": [Aufgabe, Aufgabe, …]}`.
 
 ## Regeln
 

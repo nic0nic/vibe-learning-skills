@@ -9,7 +9,7 @@ import json, re, sys
 
 TYPEN = {
     "mc": ["options", "correct"], "zahlen": ["felder"], "luecken": ["text"], "zuordnen": ["felder", "karten"],
-    "freitext": ["felder", "antworten"], "chat": ["nachrichten"], "buchungssatz": ["konten", "soll", "haben"],
+    "freitext": ["felder", "antworten"], "chat": ["nachrichten"], "buchungssatz": ["konten", "soll", "haben"], "kombi": ["teile"],
     "tabelle": ["spalten", "zeilen"], "wahrheit": ["spalten", "zeilen"],
 }
 MAX = 150000
@@ -121,6 +121,12 @@ def aufgabe(a, wo, f):
                 f.append(f"{wo}: Buchungszeile {json.dumps(x, ensure_ascii=False)} – Konto muss in „konten“ stehen, Betrag als Zahl")
         if summe(a["soll"]) != summe(a["haben"]):
             f.append(f"{wo}: Soll ({summe(a['soll'])}) und Haben ({summe(a['haben'])}) sind nicht gleich groß")
+        if a.get("jgst") is not None and a.get("jgst") != 7:
+            f.append(f"{wo}: „jgst“ nur als 7 (7. Jahrgangsstufe), sonst weglassen")
+        if a.get("jgst") == 7:
+            for k in a["konten"]:
+                if any(ch.isdigit() for ch in str(k)):
+                    f.append(f"{wo}: In Jgst. 7 Konten nur mit Kürzel, ohne Nummer: „{k}“")
         if "betraege" in a and not (isinstance(a["betraege"], list) and all(isinstance(x, list) and len(x) > 1 and isinstance(x[0], str) and zahl(x[1]) for x in a["betraege"])):
             f.append(f"{wo}: „betraege“ braucht Einträge [Text, Betrag als Zahl]")
     if typ == "tabelle" and isinstance(a.get("spalten"), list) and isinstance(a.get("zeilen"), list):
@@ -154,8 +160,16 @@ def aufgabe(a, wo, f):
         w = a.get("werte")
         if w is not None and not (isinstance(w, list) and len(w) == 2 and all(isinstance(x, str) and x.strip() for x in w)):
             f.append(f"{wo}: „werte“ braucht genau zwei Wörter, z. B. [\"ja\", \"nein\"]")
+    if typ == "kombi" and isinstance(a.get("teile"), list):
+        if len(a["teile"]) < 2:
+            f.append(f"{wo}: Eine kombinierte Aufgabe braucht mindestens zwei Teile")
+        for i, t in enumerate(a["teile"]):
+            if isinstance(t, dict) and t.get("typ") == "kombi":
+                f.append(f"{wo}, Teil {i + 1}: keine kombinierte Aufgabe in einer kombinierten Aufgabe")
+            else:
+                aufgabe(t, f"{wo}, Teil {i + 1}", f)
     if a.get("danach"):
-        aufgabe(a["danach"], wo + " → danach", f)
+        f.append(f"{wo}: „danach“ ist veraltet – stattdessen {{\"typ\": \"kombi\", \"teile\": [Aufgabe, Folgeaufgabe]}}")
 
 
 def pruefe(j):
