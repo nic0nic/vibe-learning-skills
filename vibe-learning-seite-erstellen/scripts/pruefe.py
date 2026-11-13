@@ -129,8 +129,15 @@ def aufgabe(a, wo, f):
             for k in a["konten"]:
                 if any(ch.isdigit() for ch in str(k)):
                     f.append(f"{wo}: In Jgst. 7 Konten nur mit Kürzel, ohne Nummer: „{k}“")
-        if "betraege" in a and not (isinstance(a["betraege"], list) and all(isinstance(x, list) and len(x) > 1 and isinstance(x[0], str) and zahl(x[1]) for x in a["betraege"])):
-            f.append(f"{wo}: „betraege“ braucht Einträge [Text, Betrag als Zahl]")
+        if "betraege" in a:
+            if not isinstance(a["betraege"], list):
+                f.append(f"{wo}: Die Beträge zum Ziehen müssen eine Liste sein ([[\"Rechnungsbetrag\", 11900], …]).")
+            else:
+                for i, x in enumerate(a["betraege"]):
+                    if not (isinstance(x, list) and len(x) > 1 and zahl(x[1])):
+                        f.append(f"{wo}, Betrag zum Ziehen {i + 1}: Der Betrag fehlt oder ist keine Zahl.")
+                    elif not (isinstance(x[0], str) and x[0].strip()):
+                        f.append(f"{wo}, Betrag zum Ziehen {i + 1} ({str(x[1]).replace('.', ',')} €): Die Bezeichnung fehlt, z. B. „Rechnungsbetrag“.")
     if typ == "tabelle" and isinstance(a.get("spalten"), list) and isinstance(a.get("zeilen"), list):
         felder = 0
         for i, r in enumerate(a["zeilen"]):
