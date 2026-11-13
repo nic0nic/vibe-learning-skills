@@ -136,8 +136,8 @@ def aufgabe(a, wo, f):
                 for i, x in enumerate(a["betraege"]):
                     if not (isinstance(x, list) and len(x) > 1 and zahl(x[1])):
                         f.append(f"{wo}, Betrag zum Ziehen {i + 1}: Der Betrag fehlt oder ist keine Zahl.")
-                    elif not (isinstance(x[0], str) and x[0].strip()):
-                        f.append(f"{wo}, Betrag zum Ziehen {i + 1} ({str(x[1]).replace('.', ',')} €): Die Bezeichnung fehlt, z. B. „Rechnungsbetrag“.")
+                    elif x[0] is not None and not isinstance(x[0], str):
+                        f.append(f"{wo}, Betrag zum Ziehen {i + 1}: Die Bezeichnung muss ein Text sein (oder leer \"\").")
     if typ == "tabelle" and isinstance(a.get("spalten"), list) and isinstance(a.get("zeilen"), list):
         felder = 0
         for i, r in enumerate(a["zeilen"]):
