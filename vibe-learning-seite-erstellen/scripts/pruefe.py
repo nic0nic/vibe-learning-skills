@@ -98,8 +98,10 @@ def aufgabe(a, wo, f):
         if len(ids) < 2:
             f.append(f"{wo}: mindestens zwei Felder nötig")
         for i, k in enumerate(a["karten"]):
-            if not (isinstance(k, dict) and text(k.get("t")) and k.get("z") in ids):
-                f.append(f"{wo}, Karte {i + 1}: braucht „t“ und ein „z“ aus {', '.join(map(str, ids))}")
+            if not (isinstance(k, dict) and text(k.get("t"))):
+                f.append(f"{wo}, Karte {i + 1}: Die Karte hat noch keinen Text („t“).")
+            elif k.get("z") not in ids:
+                f.append(f"{wo}, Karte „{k['t']}“: Die Karte gehört zu keinem Feld („z“ muss eine der Feld-Kennungen sein: {', '.join(map(str, ids))}).")
     if typ == "freitext" and isinstance(a.get("felder"), list) and isinstance(a.get("antworten"), list):
         if len(a["antworten"]) < len(a["felder"]):
             f.append(f"{wo}: weniger mögliche Antworten ({len(a['antworten'])}) als Felder ({len(a['felder'])})")
