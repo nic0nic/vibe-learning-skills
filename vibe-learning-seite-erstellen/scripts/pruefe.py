@@ -119,8 +119,12 @@ def aufgabe(a, wo, f):
     if typ == "buchungssatz" and all(isinstance(a.get(k), list) for k in ("soll", "haben", "konten")):
         summe = lambda l: round(sum(x[1] for x in l if isinstance(x, list) and len(x) > 1 and zahl(x[1])), 2)
         for x in a["soll"] + a["haben"]:
-            if not (isinstance(x, list) and len(x) > 1 and x[0] in a["konten"] and zahl(x[1])):
-                f.append(f"{wo}: Buchungszeile {json.dumps(x, ensure_ascii=False)} – Konto muss in „konten“ stehen, Betrag als Zahl")
+            if not (isinstance(x, list) and x and isinstance(x[0], str) and x[0].strip()):
+                f.append(f"{wo}: In der Lösung fehlt bei einer Zeile das Konto.")
+            elif x[0] not in a["konten"]:
+                f.append(f"{wo}: Das Konto „{x[0]}“ steht in der Lösung, aber nicht in „konten“ (Auswahl für die Schüler).")
+            elif not (len(x) > 1 and zahl(x[1])):
+                f.append(f"{wo}: In der Lösung fehlt beim Konto „{x[0]}“ der Betrag (als Zahl).")
         if summe(a["soll"]) != summe(a["haben"]):
             f.append(f"{wo}: Soll ({summe(a['soll'])}) und Haben ({summe(a['haben'])}) sind nicht gleich groß")
         if a.get("jgst") is not None and a.get("jgst") != 7:
