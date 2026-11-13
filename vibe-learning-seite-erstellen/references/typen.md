@@ -50,7 +50,7 @@ Bei Fehlern erklärt der Bot und macht weiter; am Ende Punkte. Gut für Buchungs
 ```
 
 ## buchungssatz – Buchungssatz bilden
-`konten` (Auswahlliste, auch Ablenker), `soll` / `haben`: `[["Konto", Betrag], …]` (Konto aus `konten`, Soll = Haben), `steuer` (Steuerkonten für den Hinweis „Denke an …“), `nebenrechnung` (HTML, wird nach Lösung gezeigt). Prüft Konten, vertauschtes Soll/Haben, fehlende Steuer, Beträge.
+`konten` (Auswahlliste, auch Ablenker), `soll` / `haben`: `[["Konto", Betrag], …]` (Konto aus `konten`, Soll = Haben), `steuer` (Steuerkonten für den Hinweis „Denke an …“), `nebenrechnung` (HTML, wird nach Lösung gezeigt), `betraege` (optional: `[["Rechnungsbetrag", 11900], …]` – Beträge zum Ziehen auf die Betragsfelder, auch Ablenker; passt als `danach` einer Rechenaufgabe). Prüft Konten, vertauschtes Soll/Haben, fehlende Steuer, Beträge.
 ```json
 {"typ": "buchungssatz", "frage": "Bilde den Buchungssatz.", "konten": ["0700 MA", "2600 VORST", "2800 BK", "4400 VE"], "soll": [["0700 MA", 40000], ["2600 VORST", 7600]], "haben": [["4400 VE", 47600]], "steuer": ["2600 VORST"], "nebenrechnung": "Vorsteuer: 40.000,00 € · 19 % = 7.600,00 €"}
 ```

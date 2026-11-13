@@ -121,6 +121,8 @@ def aufgabe(a, wo, f):
                 f.append(f"{wo}: Buchungszeile {json.dumps(x, ensure_ascii=False)} – Konto muss in „konten“ stehen, Betrag als Zahl")
         if summe(a["soll"]) != summe(a["haben"]):
             f.append(f"{wo}: Soll ({summe(a['soll'])}) und Haben ({summe(a['haben'])}) sind nicht gleich groß")
+        if "betraege" in a and not (isinstance(a["betraege"], list) and all(isinstance(x, list) and len(x) > 1 and isinstance(x[0], str) and zahl(x[1]) for x in a["betraege"])):
+            f.append(f"{wo}: „betraege“ braucht Einträge [Text, Betrag als Zahl]")
     if typ == "tabelle" and isinstance(a.get("spalten"), list) and isinstance(a.get("zeilen"), list):
         felder = 0
         for i, r in enumerate(a["zeilen"]):
