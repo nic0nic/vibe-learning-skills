@@ -35,8 +35,17 @@ Die Bausteine (Kopie der Plattform) liegen in `assets/vl/` – **nicht lesen**, 
 **B:** Bereich wählen (`node scripts/baue.js bereiche`, Pfad wie `BWR/9II/finanzierung`), dann
 `node scripts/baue.js repo datei --pfad <Bereich> -o einreichung [--katalog aktuelle-katalog.js] [--text "Kurztext"]`
 → `einreichung/pb_public/<Bereich>/<id>.html`, `einreichung/pb_public/katalog.js`, `einreichung/PR.md`.
-- **Mit GitHub-Werkzeug, das schreiben darf** (z. B. `gh`): aktuelle `pb_public/katalog.js` von `main` holen und als `--katalog`
-  übergeben, Zweig `einreichung/<id>`, beide Dateien committen, Pull Request gegen `main` mit Titel und Text aus `PR.md`.
+- **Erst nachsehen, ob es geht** (nicht raten): `gh auth status` bzw. ein Werkzeug zum Anlegen von Pull Requests vorhanden?
+  - **Claude Code (Terminal, Desktop) mit angemeldetem `gh`:** geht. Ohne Schreibrecht auf nic0nic/vibe-learning über einen Fork:
+    `gh repo fork nic0nic/vibe-learning --clone`, im Klon `git pull` und `baue.js repo … --katalog pb_public/katalog.js -o .`
+    (`PR.md` nicht committen), Zweig `einreichung/<id>`, Commit, `git push`, `gh pr create --repo nic0nic/vibe-learning --base main --title … --body-file PR.md`.
+  - **Claude Code im Web (claude.ai/code) mit verbundenem GitHub:** die Sitzung arbeitet in einem Klon des gewählten Repos
+    (nic0nic/vibe-learning oder der eigene Fork) und schiebt Änderungen auf einen eigenen Zweig; den Pull Request dort
+    anlegen (mit `gh`, falls vorhanden, sonst über den Knopf in der Oberfläche). Je nach Einrichtung – im Zweifel ausprobieren.
+  - **Chat auf claude.ai:** die GitHub-Anbindung dort liest nur → kein Pull Request, außer ein GitHub-Connector mit Schreibrechten ist eingerichtet.
+  - Schlägt es fehl (keine Anmeldung, keine Rechte): nicht weiter versuchen, sondern den Weg „Ohne“ unten nehmen.
+- **Mit Werkzeug:** aktuelle `pb_public/katalog.js` von `main` als `--katalog` übergeben, Zweig `einreichung/<id>`, Seite und
+  `katalog.js` committen, Pull Request gegen `main` mit Titel (erste Zeile ohne „# “) und Text (Rest) aus `PR.md`.
 - **Ohne:** Aufgaben-JSON lieber über Weg A einreichen (kein GitHub-Konto nötig). Eigene Seite: die Seite und `PR.md` ausgeben
   und erklären: auf github.com/nic0nic/vibe-learning im Ordner `pb_public/<Bereich>/` „Add file → Upload files“
   (GitHub legt Kopie und Pull Request an), dazu in `pb_public/katalog.js` den ausgegebenen Eintrag in die Liste zwischen
