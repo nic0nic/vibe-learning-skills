@@ -353,7 +353,7 @@ def training(t, wo, f):
 
 
 DESIGNS = ("standard", "kommandozeile", "comic", "titelkarte-rosa", "titelkarte-mint", "titelkarte-senf", "titelkarte-himmelblau",
-           "titelkarte-bordeaux", "secondhand", "trattoria", "chemielabor", "kino", "candy", "musik")   # wie lib/designs.js in vibe learning
+           "titelkarte-bordeaux", "titelkarte-modern", "secondhand", "trattoria", "chemielabor", "kino", "candy", "musik")   # wie lib/designs.js in vibe learning
 
 
 def pruefe(j):
