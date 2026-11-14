@@ -50,6 +50,9 @@ Die Bausteine (Kopie der Plattform) liegen in `assets/vl/` – **nicht lesen**, 
   und erklären: auf github.com/nic0nic/vibe-learning im Ordner `pb_public/<Bereich>/` „Add file → Upload files“
   (GitHub legt Kopie und Pull Request an), dazu in `pb_public/katalog.js` den ausgegebenen Eintrag in die Liste zwischen
   `EINREICHUNGEN-ANFANG` und `-ENDE` einfügen. Braucht ein (kostenloses) GitHub-Konto.
+- **Ganz ohne GitHub-Konto** gibt es keinen Pull Request direkt (auch nicht über claude.ai/code). Aufgaben-JSON: Weg A, „Einreichen“
+  im Editor (Anmeldung als Lehrkraft auf vl.nimals.de, der Server stellt den Pull Request). Eigene Seite: Weg C (Datei oder
+  ByCS-Paket) und die Datei an die Betreiber von vibe learning schicken, die sie aufnehmen können.
 
 **C:** `node scripts/baue.js html datei -o <name>.html` bzw. `node scripts/baue.js bycs datei -o <name>.zip`
 (`--stufen n`, wenn ein Training n Stufen hat). Ergebnis in den Ausgabeordner legen (claude.ai: `/mnt/user-data/outputs/`) und
