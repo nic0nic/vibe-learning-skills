@@ -338,6 +338,9 @@ def training(t, wo, f):
     stufen = t.get("stufen")
     for k, s in enumerate(stufen if isinstance(stufen, list) and stufen else [t]):
         ws = f"{wo}, Stufe {k + 1}" if stufen else wo
+        if stufen and isinstance(s, dict) and s.get("antwort") not in (None, "eingabe", "mc"): f.append(f"{ws}: „antwort“ ist \"eingabe\" oder \"mc\"")
+        if stufen and isinstance(s, dict) and s.get("zeit") is not None and not (isinstance(s["zeit"], dict) and isinstance(s["zeit"].get("start"), (int, float)) and s["zeit"]["start"] > 0):
+            f.append(f"{ws}: Zeit: „start“ = Sekunden für die erste Aufgabe (größer als 0)")
         if not isinstance(s, dict): f.append(f"{ws}: Objekt erwartet"); continue
         sz, wb = s.get("szenarien"), s.get("woerterbuch")
         if not sz and not wb: f.append(f"{ws}: Es fehlen „szenarien“ (Zahlen) oder „woerterbuch“ (Vokabeln)"); continue
@@ -348,7 +351,7 @@ def training(t, wo, f):
             else:
                 for i, e in enumerate(E):
                     if not (isinstance(e, list) and len(e) >= 2 and text(e[0]) and text(e[1])): f.append(f"{ws}, Eintrag {i + 1}: braucht zwei Seiten, z. B. [\"house\", \"Haus\"]")
-                if t.get("antwort") == "mc" and len(E) < 4: f.append(f"{ws}: Für Multiple Choice mindestens 4 Einträge")
+                if (s.get("antwort") or t.get("antwort")) == "mc" and len(E) < 4: f.append(f"{ws}: Für Multiple Choice mindestens 4 Einträge")
             if isinstance(wb, dict) and wb.get("richtung") not in (None, "a-b", "b-a", "beide"): f.append(f"{ws}: „richtung“ ist \"a-b\", \"b-a\" oder \"beide\"")
 
 

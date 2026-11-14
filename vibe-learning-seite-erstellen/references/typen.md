@@ -84,6 +84,7 @@ Kein Aufgabentyp, sondern ein **Schritt** mit `"training"` statt `"aufgaben"`. E
 - `zeit`: `{"start": 5, "schritt": -0.1, "min": 1.5}` – Sekunden für die erste Aufgabe, Änderung je richtiger Antwort, Untergrenze. Weglassen = ohne Zeit.
 - `versuche: true`: Bei einem Fehler darf man es nochmal versuchen (sonst sofort Fehler, Lösung wird gezeigt). `ziel`: so viele richtige zählen den Schritt als erledigt (Standard: Runde beendet bzw. Serie ab 10).
 - Inhalt: `szenarien` (Zahlen) **oder** `woerterbuch` (Vokabeln) – oder `stufen: [{"name": "bis 20", "szenarien": […]}, {"name": "Lektion 2", "woerterbuch": {…}}]` (Flammen zum Wählen).
+- Eine Stufe kann eigene `antwort` und `zeit` haben (`"zeit": null` = ohne Zeit), z. B. dieselben Aufgaben in vier Stufen: Auswählen, Auswählen auf Zeit, Eintippen, Eintippen auf Zeit.
 - **Szenario**: `frage` mit `{a}` (Wert) oder `{=a*10}` (Ausdruck), `werte`: `[von, bis]`, `[von, bis, Schritt]`, `{"aus": [2, 5, 10]}` oder Formel aus früheren Werten (`"c": "a*b"`), `loesung` (Formel), optional `bedingung` (z. B. `"b <= a"`, es wird neu gewürfelt), `runden` (Nachkommastellen), `einheit`, `falsch` (typische falsche Antworten als Formeln, für mc). Formeln: `+ - * / ( ) ^`, Vergleiche, `und`/`oder`, `runden(x, 2)`, `abs`, `min`, `max`, `wurzel`, `ganz`, `rest`; Kommazahlen mit Punkt.
 - **Wörterbuch**: `sprachen` (zwei Namen), `richtung` `"a-b"` | `"b-a"` | `"beide"`, `eintraege` `[["house", "Haus|Gebäude"], …]` (`|` = mehrere richtige Antworten), `tippfehler: true` (fast richtig zählt). Für mc mindestens 4 Einträge.
 ```json
