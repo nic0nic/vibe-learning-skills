@@ -352,8 +352,8 @@ def training(t, wo, f):
             if isinstance(wb, dict) and wb.get("richtung") not in (None, "a-b", "b-a", "beide"): f.append(f"{ws}: „richtung“ ist \"a-b\", \"b-a\" oder \"beide\"")
 
 
-DESIGNS = ("standard", "kommandozeile", "comic", "titelkarte-rosa", "titelkarte-mint", "titelkarte-senf", "titelkarte-himmelblau",
-           "titelkarte-bordeaux", "titelkarte-modern", "secondhand", "trattoria", "chemielabor", "kino", "candy", "musik")   # wie lib/designs.js in vibe learning
+DESIGNS = ("standard", "kommandozeile", "comic", "titelkarte-pink", "titelkarte-rosa", "titelkarte-mint", "titelkarte-senf", "titelkarte-himmelblau",
+           "titelkarte-bordeaux", "secondhand", "trattoria", "chemielabor", "kino", "candy", "musik")   # wie lib/designs.js in vibe learning
 
 
 def pruefe(j):
