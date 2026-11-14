@@ -4,7 +4,7 @@ Skills für [claude.ai](https://claude.ai) für Lehrkräfte an bayerischen Reals
 
 | Skill | Wofür |
 |---|---|
-| [`vibe-learning-seite-erstellen`](vibe-learning-seite-erstellen/SKILL.md) | Übungen für vibe learning aus den Standardbausteinen: als Aufgaben-JSON für den Editor („Übung erstellen“), als HTML-Datei oder ByCS-Paket direkt im Chat, oder als Pull Request ins Repo. Auch eigene Seiten mit eigener Interaktion (nur Datei, ByCS oder Pull Request). Fehlende Aufgabentypen werden als Issue vorgeschlagen. |
+| [`vibe-learning-seite-erstellen`](vibe-learning-seite-erstellen/SKILL.md) | Übungen für vibe learning aus den Standardbausteinen: als Aufgaben-JSON für den Editor („Übung erstellen“), als HTML-Datei oder ByCS-Paket direkt im Chat, oder als Pull Request ins Repo. Auch eigene Seiten mit eigener Interaktion (Pull Request dann als „eigener Code“ markiert). Fehlende Aufgabentypen werden als Issue vorgeschlagen. |
 | [`selbstlernheft-html`](selbstlernheft-html/SKILL.md) | Druckfertige Selbstlernhefte (A4, HTML + PDF) mit Infotexten, s/w-Grafiken, Überblickskästen und Lösungsblättern L1…Ln. |
 | [`bwr-uebungsaufgaben`](bwr-uebungsaufgaben/SKILL.md) | BwR-Übungsaufgaben (Angabe + Lösung) nach ISB-Handreichung: Buchungssätze, Belege, Operatoren, Punkte. |
 | [`bwr-aufgabenstellungen-afb`](bwr-aufgabenstellungen-afb/SKILL.md) | Operationalisierte BwR-Aufgabenstellungen nach Anforderungsbereichen I–III, AP-nah, je Jahrgangsstufe. |
@@ -31,7 +31,7 @@ Wer keine Skills nutzen kann (je nach Tarif), kopiert den Inhalt von `SKILL.md` 
 - **Datei im Chat:** fertige HTML-Datei oder ByCS-Paket (`scripts/baue.js html|bycs`). Braucht „Code-Ausführung und Dateierstellung“.
 - **JSON exportieren:** `.json`-Datei, im Editor über „Öffnen“ zu laden.
 
-Eigene Seiten (eigener Code über die Bausteine hinaus) gehen nur als Datei, ByCS-Paket oder Pull Request direkt, nicht über den Editor.
+Eigene Seiten (eigener Code über die Bausteine hinaus) gehen als Datei, ByCS-Paket oder Pull Request – direkt oder auf der Webseite über „Eigene Seite mit eigenem Code einreichen“. Solche Pull Requests sind als „⚠️ Eigener Code“ markiert.
 
 **Bausteine aktuell halten:** Der Skill enthält in `assets/vl/` eine Kopie der Bibliotheken von vibe learning. Nach Änderungen dort (lib/, katalog.js, nav.js, sync.js, scorm.js) im Ordner dieses Repos `python3 werkzeuge/vibe-learning-holen.py` laufen lassen und committen; das Skript meldet auch, wenn `DESIGNS` in `scripts/pruefe.py` nicht mehr passt.
 

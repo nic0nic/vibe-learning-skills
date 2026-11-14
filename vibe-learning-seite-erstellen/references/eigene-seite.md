@@ -82,5 +82,6 @@ node scripts/baue.js repo   seite.html --pfad IT/grundlagen -o einreichung
 ```
 
 Wenn möglich die fertige Datei im Browser öffnen bzw. mit einem Headless-Browser auf JavaScript-Fehler prüfen.
-Eigene Seiten gehen **nicht** über „Übung erstellen“ auf der Webseite (dort nur Aufgaben-JSON ohne Code), sondern nur als
-Datei, ByCS-Paket oder Pull Request direkt im Repo – der Code wird dort vor dem Freigeben geprüft.
+Eigene Seiten lassen sich nicht im Editor bearbeiten. Einreichen geht direkt im Repo oder auf der Webseite über
+„Übung erstellen → Herunterladen / Einreichen → Eigene Seite mit eigenem Code einreichen“ (Quellseite hochladen). Beide Wege
+markieren den Pull Request als **„⚠️ Eigener Code“**; der Code wird vor dem Freigeben gelesen.

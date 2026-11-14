@@ -25,7 +25,7 @@ Die Bausteine (Kopie der Plattform) liegen in `assets/vl/` – **nicht lesen**, 
 | Weg | Ergebnis | Aufgaben-JSON | eigene Seite |
 |---|---|---|---|
 | **A Webseite – Editor** | JSON-Block → Lehrkraft fügt ihn in „Übung erstellen“ ein, testet, lädt herunter oder reicht ein | ✓ | – |
-| **B Webseite – Pull Request direkt** | Seite + Eintrag in `katalog.js` als Pull Request in nic0nic/vibe-learning | ✓ | ✓ |
+| **B Webseite – Pull Request** | Seite + Eintrag in `katalog.js` als Pull Request in nic0nic/vibe-learning (selbst mit GitHub-Werkzeug oder über „Einreichen“ auf der Webseite) | ✓ | ✓ (markiert als eigener Code) |
 | **C Datei im Chat** | eine HTML-Datei (läuft per Doppelklick) oder ein ByCS-Paket (SCORM-ZIP) | ✓ | ✓ |
 | **D JSON exportieren** | `.json`-Datei zum Öffnen im Editor (Knopf „Öffnen“) oder zum Aufheben | ✓ | – |
 
@@ -43,16 +43,16 @@ Die Bausteine (Kopie der Plattform) liegen in `assets/vl/` – **nicht lesen**, 
     (nic0nic/vibe-learning oder der eigene Fork) und schiebt Änderungen auf einen eigenen Zweig; den Pull Request dort
     anlegen (mit `gh`, falls vorhanden, sonst über den Knopf in der Oberfläche). Je nach Einrichtung – im Zweifel ausprobieren.
   - **Chat auf claude.ai:** die GitHub-Anbindung dort liest nur → kein Pull Request, außer ein GitHub-Connector mit Schreibrechten ist eingerichtet.
-  - Schlägt es fehl (keine Anmeldung, keine Rechte): nicht weiter versuchen, sondern den Weg „Ohne“ unten nehmen.
+  - Schlägt es fehl (keine Anmeldung, keine Rechte): nicht weiter versuchen, sondern den Weg „Ohne Werkzeug“ unten nehmen.
 - **Mit Werkzeug:** aktuelle `pb_public/katalog.js` von `main` als `--katalog` übergeben, Zweig `einreichung/<id>`, Seite und
   `katalog.js` committen, Pull Request gegen `main` mit Titel (erste Zeile ohne „# “) und Text (Rest) aus `PR.md`.
-- **Ohne:** Aufgaben-JSON lieber über Weg A einreichen (kein GitHub-Konto nötig). Eigene Seite: die Seite und `PR.md` ausgeben
-  und erklären: auf github.com/nic0nic/vibe-learning im Ordner `pb_public/<Bereich>/` „Add file → Upload files“
-  (GitHub legt Kopie und Pull Request an), dazu in `pb_public/katalog.js` den ausgegebenen Eintrag in die Liste zwischen
-  `EINREICHUNGEN-ANFANG` und `-ENDE` einfügen. Braucht ein (kostenloses) GitHub-Konto.
-- **Ganz ohne GitHub-Konto** gibt es keinen Pull Request direkt (auch nicht über claude.ai/code). Aufgaben-JSON: Weg A, „Einreichen“
-  im Editor (Anmeldung als Lehrkraft auf vl.nimals.de, der Server stellt den Pull Request). Eigene Seite: Weg C (Datei oder
-  ByCS-Paket) und die Datei an die Betreiber von vibe learning schicken, die sie aufnehmen können.
+- **Ohne Werkzeug – über die Webseite (kein GitHub-Konto nötig, Anmeldung als Lehrkraft auf vl.nimals.de):**
+  - Aufgaben-JSON: Weg A, im Editor „Herunterladen / Einreichen → Einreichen“.
+  - Eigene Seite: die **Quellseite** (die `.html` selbst, nicht die Ausgabe von `baue.js html`) als Datei ausgeben; die Lehrkraft lädt sie in
+    „Übung erstellen → Herunterladen / Einreichen → Eigene Seite mit eigenem Code einreichen“ hoch, Bereich wählen, einreichen.
+- **Markierung:** Pull Requests mit eigener Seite heißen „⚠️ Eigener Code – Neue Übung: …“ und haben oben eine Warnung mit Zahl der
+  Script-Blöcke und Zeilen (Webseite: zusätzlich Label `eigener-code`) – der Code wird vor der Freigabe gelesen. Diese Markierung
+  nie entfernen oder umgehen. Geprüft wird automatisch nur, dass die Seite ausschließlich Bausteine von vibe learning einbindet.
 
 **C:** `node scripts/baue.js html datei -o <name>.html` bzw. `node scripts/baue.js bycs datei -o <name>.zip`
 (`--stufen n`, wenn ein Training n Stufen hat). Ergebnis in den Ausgabeordner legen (claude.ai: `/mnt/user-data/outputs/`) und

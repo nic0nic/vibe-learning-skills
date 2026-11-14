@@ -54,13 +54,7 @@ function eingabe() {
 const EINBINDEN = /<script\s+src="([^"]+)"\s*>\s*<\/script>|<link\s+rel="stylesheet"\s+href="([^"]+)"\s*\/?>|<script\s+type="application\/json"\s+data-einbetten="([^"]+)"\s*>\s*<\/script>/g;
 const tiefe = html => { const m = html.match(/src="((?:\.\.\/)*)katalog\.js"/); return m ? m[1].length / 3 : null; };
 
-function eigenPruefen(html) {
-  const f = [];
-  if (tiefe(html) == null) f.push('<script src="../../katalog.js"></script> fehlt (dazu nav.js und sync.js, siehe references/eigene-seite.md).');
-  if (!/src="(?:\.\.\/)*sync\.js"/.test(html)) f.push('sync.js fehlt (speichert den Fortschritt, im ByCS-Paket ersetzt durch scorm.js).');
-  if (!/<title>[^<]+<\/title>/.test(html)) f.push('<title> fehlt.');
-  return f;
-}
+const eigenPruefen = html => Seite.eigeneSeite(html, {}).fehler;   // gleiche Prüfung wie beim Einreichen auf der Webseite
 
 function einbetten(html, bycs) {
   const t = tiefe(html), basis = path.join(VL, ...Array(t).fill('x'));   // gedachter Ordner pb_public/<…>/ in gleicher Tiefe
@@ -165,8 +159,7 @@ if (befehl === 'bereiche') {
     const f = eigenPruefen(e.html); if (f.length) stop('- ' + f.join('\n- '));
     titel = titelVon(e.html); kurz = opt.text || '';
     id = Seite.toolId(titel, zufall());
-    const hoch = '../'.repeat(pfad.split('/').length);                       // relative Pfade an die Tiefe des Bereichs anpassen
-    html = mitKennung(e.html, id).replace(/((?:src|href)=")(?:\.\.\/)+(?=(?:katalog\.js|nav\.js|sync\.js|seite\.css|lib\/|BWR\/))/g, `$1${hoch}`);
+    html = Seite.eigeneSeite(e.html, {pfad, toolId: id}).html;   // relative Pfade an die Tiefe des Bereichs, data-trainer
     einbetten(html, false);   // nur prüfen, ob alle Bausteine gefunden werden
   }
   const liste = JSON.parse(m[1]);
@@ -176,7 +169,10 @@ if (befehl === 'bereiche') {
   const aus = opt.o || 'einreichung', seitePfad = `pb_public/${pfad}/${id}.html`;
   schreibe(path.join(aus, seitePfad), html);
   schreibe(path.join(aus, 'pb_public/katalog.js'), neu);
-  schreibe(path.join(aus, 'PR.md'), `# Neue Übung: ${titel}\n\nErstellt mit dem Skill vibe-learning-seite-erstellen (${e.art === 'json' ? 'Standardbausteine, Aufgaben-JSON' : '**eigene Seite mit eigenem Code – bitte den Code prüfen**'}).\n\n`
+  const eigen = e.art === 'eigen', p = eigen ? Seite.eigeneSeite(e.html, {}) : null;
+  schreibe(path.join(aus, 'PR.md'), `# ${eigen ? '⚠️ Eigener Code – ' : ''}Neue Übung: ${titel}\n\n`
+    + (eigen ? `> [!WARNING]\n> **Eigener Code:** Diese Seite enthält eigenes JavaScript (${p.skripte} Script-Blöcke, ${p.zeilen} Zeilen). Geprüft wurde nur, dass sie ausschließlich Bausteine von vibe learning einbindet – den Code vor dem Mergen lesen und die Seite ausprobieren.\n\n` : '')
+    + `Erstellt mit dem Skill vibe-learning-seite-erstellen (${eigen ? 'eigene Seite' : 'Standardbausteine, Aufgaben-JSON'}).\n\n`
     + `- **Bereich:** ${pfad} (${b.titel})\n- **Datei:** \`${seitePfad}\`\n- **Kurztext:** ${kurz || '–'}\n\n`
     + `Nach dem Mergen: \`python3 werkzeuge/einzeldateien.py\` und \`python3 werkzeuge/bycs-pakete.py\` laufen lassen und mit \`git push origin main:live\` freigeben.\n`);
   console.log('\nEintrag in katalog.js (EINREICHUNGEN, zum Einfügen von Hand):\n' + JSON.stringify(eintrag));
