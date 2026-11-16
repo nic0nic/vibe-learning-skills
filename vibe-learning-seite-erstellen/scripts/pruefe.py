@@ -25,7 +25,8 @@ MAX = 150000
 VERBOTEN = re.compile(r"<\s*script|\bon[a-z]+\s*=|javascript:|<\s*iframe|<\s*object|<\s*embed", re.I)
 # Erlaubtliste für HTML in Texten (wie ERLAUBT/TAG in seite.js)
 ERLAUBT = {"p", "br", "b", "strong", "i", "em", "u", "s", "sub", "sup", "small", "mark", "span", "div", "hr",
-           "ul", "ol", "li", "h2", "h3", "h4", "table", "thead", "tbody", "tr", "th", "td", "code", "pre", "blockquote"}
+           "ul", "ol", "li", "h2", "h3", "h4", "table", "thead", "tbody", "tr", "th", "td", "code", "pre", "blockquote",
+           "details", "summary"}
 TAG = re.compile(r'<(/?)([a-zA-Z][a-zA-Z0-9]*)((?:\s+[a-z]+="[a-z0-9 _-]*")*)\s*(/?)>')
 
 
