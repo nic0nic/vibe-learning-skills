@@ -45,6 +45,16 @@ Bei genau einer richtigen Antwort wird beim Antippen sofort geprüft.
 - `zahl`: `{"l": 11900, "e": "€"}` mit `r` (bei richtig) und `rFalsch` (Erklärung)
 - `freitext`: `{"antworten": [["UST"]]}` mit `r`, `rFalsch`
 Bei Fehlern erklärt der Bot und macht weiter; am Ende Punkte. Gut für Buchungssätze Schritt für Schritt.
+**Szenario (verzweigter Chat):** alles optional, alte Chats laufen unverändert. Eine Nachricht als Objekt kann `"id": "kredit"` (Sprungziel), `"weiter": "id"` (danach dorthin statt zur nächsten) und `"ende": true` (Chat endet hier) haben; reiner Text mit Marke: `{"bot": "…", "id": "kk"}`. Antwort-Knöpfe können `"weiter": "id"` oder `"ende": true` haben (gilt vor `weiter`/`ende` der Frage). Hat kein Knopf `"ok": true`, ist die Frage eine **Entscheidung**: Sie zählt nicht als Frage, `r` erscheint neutral (dafür `weiter` an den Knöpfen oder `"entscheidung": true` an der Frage). Jeder Zweig braucht ein Ende: letzte Nachricht des Zweigs mit `"ende": true` oder `"weiter"` zu einem gemeinsamen Schluss.
+```json
+{"typ": "chat", "name": "Bankberaterin", "bild": "🏦", "nachrichten": ["Du brauchst 5.000 € für eine Maschine.",
+  {"bot": "Wie finanzierst du?", "antworten": [{"t": "Kontokorrent", "weiter": "kk"}, {"t": "Darlehen", "weiter": "dar"}]},
+  {"id": "kk", "bot": "Der Kontokorrentkredit ist flexibel, aber teuer."},
+  {"bot": "Passt er zu einer Maschine?", "antworten": [{"t": "ja", "r": "Nein, er ist kurzfristig."}, {"t": "nein", "ok": true, "r": "Genau."}], "weiter": "schluss"},
+  {"id": "dar", "bot": "Ein Darlehen passt zur langen Nutzung."},
+  {"bot": "Wie hoch sind die Zinsen bei 4 % im ersten Jahr?", "zahl": {"l": 200, "e": "€"}, "rFalsch": "5.000 € · 4 : 100 = 200 €"},
+  {"id": "schluss", "bot": "Damit ist die Finanzierung geklärt.", "ende": true}]}
+```
 ```json
 {"typ": "chat", "name": "BWR-Coach", "bild": "🧑‍🏫", "nachrichten": ["Wir buchen einen Verkauf.", {"bot": "Wird das Bankkonto mehr oder weniger?", "antworten": [{"t": "mehr", "ok": true, "r": "Genau!"}, {"t": "weniger", "r": "Nein, der Kunde überweist uns Geld."}]}, {"bot": "Welcher Betrag?", "zahl": {"l": 11900, "e": "€"}, "r": "Richtig!", "rFalsch": "10.000,00 € + 19 % = 11.900,00 €."}]}
 ```
@@ -100,3 +110,52 @@ Kein Aufgabentyp, sondern ein **Schritt** mit `"training"` statt `"aufgaben"`. E
 ```
 Im Editor („Übung erstellen“): Baustein „⏱ Training“; Vokabeln lassen sich aus Excel/CSV/Quizlet/Anki importieren.
 
+
+# Experimentelle Typen (Branch `beta` von vibe learning)
+
+Diese Typen gibt es bisher nur im Branch `beta` (noch nicht auf vl.nimals.de). Format und Bedienung können sich noch ändern – der Lehrkraft das dazusagen. Im Editor stehen sie unter „Experimentell (β)“. Reiner Text heißt: kein HTML, ein `<p>` wird als Zeichen angezeigt (gut für Code).
+
+## reihenfolge – Karten ordnen
+`karten`: Texte in der **richtigen** Reihenfolge (HTML erlaubt), werden gemischt. Ziehen, ▲ ▼ oder antippen. `"mono": true` → reiner Text in Schreibmaschinenschrift, Einrückung bleibt (Codezeilen ordnen). `h` (Hinweis bei Fehler). Gleiche Texte sind austauschbar.
+```json
+{"typ": "reihenfolge", "frage": "Ordne das Kalkulationsschema.", "karten": ["Listeneinkaufspreis", "− Liefererrabatt", "= Zieleinkaufspreis", "− Liefererskonto", "= Bareinkaufspreis"]}
+```
+
+## offen – freie Antwort mit Selbstkontrolle (AFB II/III)
+`muster` (Musterlösung, HTML), `kriterien` (Liste zum Abhaken, optional), `zeilen` (Höhe des Textfelds, Standard 5), `min` (Mindestzahl Zeichen). Ablauf: schreiben → „Musterlösung zeigen“ → Kriterien abhaken → abschließen. Gilt dann als gelöst, unabhängig von den Haken; nichts wird automatisch bewertet oder gespeichert.
+```json
+{"typ": "offen", "frage": "Begründe, warum ein Unternehmen Skonto nutzen sollte.", "min": 20, "muster": "<p>Skonto ist ein Preisnachlass für schnelle Zahlung. Wer darauf verzichtet, nimmt einen sehr teuren Lieferantenkredit in Anspruch.</p>", "kriterien": ["nennt den Preisnachlass", "vergleicht mit einem Kredit"]}
+```
+
+## markieren – Stellen im Text anklicken
+`text` (reiner Text, Zeilen mit `\n`): gesuchte Stellen in `[[…]]`. Angeklickt werden Wörter (Satzzeichen nicht; mehrere Wörter in einer Klammer zusammen) oder mit `"einheit": "zeile"` ganze Zeilen (gesucht ist jede Zeile, in der `[[` vorkommt). `"mono": true` (Code, Trennung nur an Leerzeichen), `"anzahl": false` (Anzahl nicht verraten), `h`.
+```json
+{"typ": "markieren", "frage": "Markiere alle Aufwandskonten.", "text": "Auf dem Tisch liegen Belege zu [[AWR]], BK, [[AWF]], UEFE und [[AWB]]."}
+```
+
+## verbessern – Fehler finden und verbessern
+`text` (reiner Text, Zeilen mit `\n`) mit Fehlern `[[falsch|richtig|auch richtig]]` – **das Falsche zuerst** (wird angezeigt), danach die erlaubten Verbesserungen; `[[zu viel|]]` = Stelle löschen. Ablauf je Fehlerzeile: Zeile anklicken → alle falschen Stellen anklicken (nochmal = abwählen) → verbessern. Bei nur einer Zeile entfällt die Zeilenwahl. Stellen sind Wörter (durch Leerzeichen getrennt) und die Klammern, ein Fehler mitten im Wort also als eigene Klammer: `Titel[[</h2>|</h1>]]`. `"mono": true` (Code), `"gross": false` (Groß/klein egal), `h`.
+```json
+{"typ": "verbessern", "mono": true, "frage": "Finde und verbessere die Fehler.", "text": "<h1>Mouse Rat[[</h2>|</h1>]]\n<p>Die Band aus Pawnee</p>\n<img [[scr|src]]=\"band.jpg\">"}
+```
+
+## beschriften – Begriffe auf ein Bild ziehen
+`bild`: eingebettet als `data:image/png|jpeg|gif|webp|svg+xml;base64,…` (höchstens 600 kB, zählt nicht zu den 150 kB; SVG mit `width` und `height`), `alt` (Bildbeschreibung), `punkte`: `[{"x": 25, "y": 40, "t": "Begriff"}]` (x, y in Prozent von links/oben), `extra` (Ablenker). Im Chat am einfachsten ein kleines SVG selbst zeichnen und mit base64 einbetten; im Editor lädt die Lehrkraft ein Bild hoch und klickt die Punkte an.
+
+## bloecke – Blöcke zu Formel oder Ablauf zusammensetzen
+`bloecke` (Vorrat, reiner Text, auch Ablenker; beliebig oft nutzbar, `"einmal": true` = jeder nur einmal), `loesung` (Blöcke in der richtigen Reihenfolge) oder `loesungen` (mehrere Listen), `start` (fester Text davor, z. B. `"Z ="`), `"gleichwertig": true` → jede rechnerisch gleichwertige Formel zählt (Blöcke werden mit `· : + − ( )` und Zahlen gerechnet, Buchstaben sind Größen), `"senkrecht": true` (untereinander, für Programmzeilen), `"mono": true`, `h`.
+```json
+{"typ": "bloecke", "frage": "Baue die Zinsformel.", "start": "Z =", "gleichwertig": true, "bloecke": ["K", "p", "t", "·", ":", "(", ")", "100", "360", "+"], "loesung": ["K", "·", "p", "·", "t", ":", "(", "100", "·", "360", ")"]}
+```
+
+## karteikarten – umdrehen und selbst einschätzen
+`karten`: `[{"v": "Vorderseite", "r": "Rückseite"}]` (HTML), `"mischen": false`. „Gewusst“ / „Nicht gewusst“ – nicht gewusste Karten kommen wieder; gelöst, wenn alle gewusst sind.
+```json
+{"typ": "karteikarten", "frage": "Lerne die Begriffe.", "karten": [{"v": "Disagio", "r": "Abschlag vom Kreditbetrag"}, {"v": "Tilgung", "r": "Rückzahlung des Kredits"}]}
+```
+
+## kreuzwort – Kreuzworträtsel
+`woerter`: `[{"w": "Bilanz", "t": "Hinweis"}]` (2 bis 25 Wörter, je 2 bis 20 Buchstaben A–Z, Ä, Ö, Ü; ß wird SS, Leerzeichen und Bindestriche entfallen). Das Gitter entsteht von selbst. Wörter mit gemeinsamen Buchstaben wählen, sonst stehen sie einzeln darunter. Sparsam einsetzen: viel Zeit, wenig Lernertrag.
+```json
+{"typ": "kreuzwort", "frage": "Löse das Rätsel.", "woerter": [{"w": "Bilanz", "t": "Gegenüberstellung von Vermögen und Kapital"}, {"w": "Inventur", "t": "Bestandsaufnahme"}, {"w": "Aktiva", "t": "linke Seite der Bilanz"}]}
+```

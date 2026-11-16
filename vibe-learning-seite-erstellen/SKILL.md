@@ -73,6 +73,8 @@ Ohne Code-Ausführung gehen nur A und D (als Codeblock).
  ]}
 ```
 - **Typen:** `mc` Multiple Choice · `zahlen` Zahleneingabe · `luecken` Lückentext mit Auswahllisten oder Wortbank · `zuordnen` Karten in Felder ziehen · `freitext` Begriffe eingeben (mit Tippfehlererkennung) · `chat` Lern-Chat · `buchungssatz` · `tabelle` Tabelle ausfüllen (z. B. Tilgungsplan) · `wahrheit` Tabelle mit ja/nein (z. B. UND/ODER) · `kombi` Aufgaben nacheinander (`{"typ": "kombi", "teile": [Aufgabe, …]}`).
+- **Szenario:** `chat` kann verzweigen (`id`, `weiter`, `ende`, Entscheidungen ohne richtig/falsch), Format in `typen.md`.
+- **Experimentell (nur Branch `beta`, Format kann sich ändern, der Lehrkraft dazusagen):** `reihenfolge` Karten ordnen · `offen` freie Antwort mit Musterlösung und Selbstkontrolle · `markieren` Stellen anklicken · `verbessern` Fehler finden und verbessern · `beschriften` Begriffe auf ein Bild ziehen · `bloecke` Formel oder Ablauf aus Blöcken bauen · `karteikarten` · `kreuzwort`. Felder am Ende von `typen.md`.
 - `schritte` = Knöpfe oben (Erarbeitung). Ein Schritt hat Erklärung (`html`) und/oder `aufgaben`. Für eine einfache Liste genügt `"aufgaben": [...]` statt `schritte`.
 - Je Aufgabe optional: `nr`, `frage`, `erinnerung`, `erinnerungZu: true` (zugeklappt, wenn sie die Lösung verraten würde), `material`, `ok` (Text bei Erfolg).
 - Drill auf Zeit und/oder endlos (Kopfrechnen, Vokabeln): Schritt mit `"training"` statt `"aufgaben"`, Stufen mit eigener Antwortform und Zeit (`typen.md`).

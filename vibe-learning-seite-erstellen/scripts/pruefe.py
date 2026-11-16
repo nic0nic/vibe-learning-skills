@@ -11,7 +11,16 @@ TYPEN = {
     "mc": ["options", "correct"], "zahlen": ["felder"], "luecken": ["text"], "zuordnen": ["felder", "karten"],
     "freitext": ["felder", "antworten"], "chat": ["nachrichten"], "buchungssatz": ["konten", "soll", "haben"], "kombi": ["teile"],
     "tabelle": ["spalten", "zeilen"], "wahrheit": ["spalten", "zeilen"],
+    "reihenfolge": ["karten"], "offen": ["muster"], "markieren": ["text"], "verbessern": ["text"], "beschriften": ["bild", "punkte"],
+    "bloecke": ["bloecke"], "karteikarten": ["karten"], "kreuzwort": ["woerter"],
 }
+# Experimentell (Branch beta von vibe learning): Format kann sich noch ändern
+EXPERIMENTELL = ("reihenfolge", "offen", "markieren", "verbessern", "beschriften", "bloecke", "karteikarten", "kreuzwort")
+# Felder, die als reiner Text angezeigt werden (kein HTML): dürfen „<p>“ enthalten
+ROH = {"markieren": ["text"], "verbessern": ["text"], "bloecke": ["bloecke", "loesung", "loesungen", "start"],
+       "beschriften": ["bild", "punkte", "extra", "alt"]}
+MAX_BILD = 600000
+BILD = re.compile(r"data:image/(?:png|jpeg|gif|webp|svg\+xml);base64,[A-Za-z0-9+/]+=*")
 MAX = 150000
 VERBOTEN = re.compile(r"<\s*script|\bon[a-z]+\s*=|javascript:|<\s*iframe|<\s*object|<\s*embed", re.I)
 # Erlaubtliste für HTML in Texten (wie ERLAUBT/TAG in seite.js)
@@ -48,8 +57,22 @@ def alle_texte(x, wo, f):
         for y in x:
             alle_texte(y, wo, f)
     elif isinstance(x, dict):
-        for y in x.values():
-            alle_texte(y, wo, f)
+        roh = ROH.get(x.get("typ"), []) if isinstance(x.get("typ"), str) else []
+        if x.get("typ") == "reihenfolge" and x.get("mono"):
+            roh = ["karten"]
+        for k, y in x.items():
+            if k not in roh:
+                alle_texte(y, wo, f)
+
+
+def kw_wort(w):
+    return re.sub(r"[^A-ZÄÖÜ]", "", str(w or "").upper().replace("ẞ", "SS"))
+
+
+def ohne_bilder(x):
+    if isinstance(x, dict):
+        return {k: ("" if k == "bild" and isinstance(v, str) else ohne_bilder(v)) for k, v in x.items()}
+    return [ohne_bilder(y) for y in x] if isinstance(x, list) else x
 
 
 def text(v):
@@ -112,10 +135,23 @@ def aufgabe(a, wo, f):
             if not (isinstance(m, dict) and text(m.get("bot"))):
                 f.append(f"{wo}, Nachricht {i + 1}: Text oder {{\"bot\": …}} erwartet")
                 continue
-            if m.get("antworten") is not None and not any(isinstance(x, dict) and x.get("ok") for x in m["antworten"]):
-                f.append(f"{wo}, Nachricht {i + 1}: keine Antwort mit \"ok\": true")
+            ids = [x["id"] for x in a["nachrichten"] if isinstance(x, dict) and x.get("id") is not None]
+            wn = f"{wo}, Nachricht {i + 1}"
+            ant = m.get("antworten")
+            if ant is not None and not isinstance(ant, list):
+                f.append(f"{wn}: „antworten“ muss eine Liste sein")
+                continue
+            # Szenario: Frage ohne richtige Antwort ist eine Entscheidung (Knopf mit „weiter“/„ende“ oder "entscheidung": true)
+            if ant is not None and not any(isinstance(x, dict) and x.get("ok") for x in ant) and not m.get("entscheidung") \
+                    and not any(isinstance(x, dict) and (x.get("weiter") is not None or x.get("ende")) for x in ant):
+                f.append(f"{wn}: keine Antwort mit \"ok\": true (für eine Entscheidung ohne richtig/falsch: \"entscheidung\": true oder „weiter“ an den Antworten)")
             if m.get("zahl") is not None and not zahl((m["zahl"] or {}).get("l")):
-                f.append(f"{wo}, Nachricht {i + 1}: „zahl“ braucht „l“ (Lösung als Zahl)")
+                f.append(f"{wn}: „zahl“ braucht „l“ (Lösung als Zahl)")
+            if m.get("id") is not None and (not text(m["id"]) or ids.count(m["id"]) > 1):
+                f.append(f"{wn}: „id“ muss ein Text sein und darf nur einmal vorkommen")
+            for x, was in [(m, "")] + [(x, f", Antwort {k + 1}") for k, x in enumerate(ant or []) if isinstance(x, dict)]:
+                if x.get("weiter") is not None and x["weiter"] not in ids:
+                    f.append(f"{wn}{was}: „weiter“ zeigt auf „{x['weiter']}“, aber keine Nachricht hat diese „id“")
     if typ == "buchungssatz" and all(isinstance(a.get(k), list) for k in ("soll", "haben", "konten")):
         summe = lambda l: round(sum(x[1] for x in l if isinstance(x, list) and len(x) > 1 and zahl(x[1])), 2)
         for x in a["soll"] + a["haben"]:
@@ -173,6 +209,110 @@ def aufgabe(a, wo, f):
         w = a.get("werte")
         if w is not None and not (isinstance(w, list) and len(w) == 2 and all(isinstance(x, str) and x.strip() for x in w)):
             f.append(f"{wo}: „werte“ braucht genau zwei Wörter, z. B. [\"ja\", \"nein\"]")
+    def texte(l, was, mind):
+        if not (isinstance(l, list) and len(l) >= mind and all(text(x) for x in l)):
+            f.append(f"{wo}: „{was}“ braucht mindestens {mind} Texte")
+            return False
+        return True
+    if typ == "reihenfolge":
+        if texte(a.get("karten"), "karten", 2) and len(set(a["karten"])) < 2:
+            f.append(f"{wo}: Die Karten sind alle gleich – es gibt nichts zu ordnen")
+    if typ == "offen":
+        if not text(a.get("muster")):
+            f.append(f"{wo}: „muster“ (Musterlösung) fehlt")
+        k = a.get("kriterien")
+        if k is not None and not (isinstance(k, list) and all(text(x) for x in k)):
+            f.append(f"{wo}: „kriterien“ muss eine Liste von Texten sein")
+        for k in ("zeilen", "min"):
+            v = a.get(k)
+            if v is not None and not (isinstance(v, int) and not isinstance(v, bool) and 0 < v <= 2000):
+                f.append(f"{wo}: „{k}“ muss eine ganze Zahl größer 0 sein")
+    if typ == "markieren" and a.get("text") is not None:
+        if not isinstance(a["text"], str) or not re.search(r"\[\[[\s\S]*?\S[\s\S]*?\]\]", a["text"]):
+            f.append(f"{wo}: keine gesuchte Stelle [[…]] im Text")
+        if a.get("einheit") is not None and a["einheit"] not in ("wort", "zeile"):
+            f.append(f"{wo}: „einheit“ ist \"wort\" oder \"zeile\"")
+    if typ == "verbessern" and a.get("text") is not None:
+        l = re.findall(r"\[\[[\s\S]*?\]\]", a["text"]) if isinstance(a["text"], str) else []
+        if not l:
+            f.append(f"{wo}: kein Fehler [[falsch|richtig]] im Text")
+        for x in l:
+            t = x[2:-2].split("|")
+            if "\n" in x:
+                f.append(f"{wo}: Fehler {x.replace(chr(10), '↵')} darf nicht über das Zeilenende gehen")
+            elif len(t) < 2 or not t[0].strip():
+                f.append(f"{wo}: Fehler {x} braucht erst das Falsche, dann die Verbesserung: [[falsch|richtig]]")
+            elif any(r.strip() == t[0].strip() for r in t[1:]):
+                f.append(f"{wo}: Fehler {x}: Verbesserung und Fehler sind gleich")
+    if typ == "beschriften":
+        b = a.get("bild")
+        if b is not None and not (isinstance(b, str) and BILD.fullmatch(b)):
+            f.append(f"{wo}: „bild“ muss ein eingebettetes Bild sein (data:image/png, jpeg, gif, webp oder svg+xml, base64)")
+        elif b and len(b) > MAX_BILD:
+            f.append(f"{wo}: Das Bild ist zu groß ({len(b) // 1000} kB, höchstens {MAX_BILD // 1000} kB) – bitte verkleinern")
+        P = a.get("punkte")
+        if P is not None and not (isinstance(P, list) and P):
+            f.append(f"{wo}: „punkte“ braucht mindestens einen Punkt")
+        for i, pkt in enumerate(P if isinstance(P, list) else []):
+            if not (isinstance(pkt, dict) and text(pkt.get("t"))):
+                f.append(f"{wo}, Punkt {i + 1}: Der Begriff („t“) fehlt")
+            elif not all(zahl(pkt.get(k)) and 0 <= pkt[k] <= 100 for k in ("x", "y")):
+                f.append(f"{wo}, Punkt „{pkt['t']}“: „x“ und „y“ sind Prozentwerte von 0 bis 100")
+        e = a.get("extra")
+        if e is not None and not (isinstance(e, list) and all(text(x) for x in e)):
+            f.append(f"{wo}: „extra“ muss eine Liste von Begriffen sein")
+        if a.get("alt") is not None and not isinstance(a["alt"], str):
+            f.append(f"{wo}: „alt“ (Bildbeschreibung) muss ein Text sein")
+    if typ == "bloecke" and texte(a.get("bloecke"), "bloecke", 2):
+        L = a["loesungen"] if a.get("loesungen") is not None else [a["loesung"]] if a.get("loesung") is not None else None
+        if not (isinstance(L, list) and L):
+            f.append(f"{wo}: „loesung“ fehlt (Liste der Blöcke in der richtigen Reihenfolge)")
+        else:
+            for i, l in enumerate(L):
+                wl = f"Lösung {i + 1}" if a.get("loesungen") is not None else "Lösung"
+                if not (isinstance(l, list) and l):
+                    f.append(f"{wo}: {wl} muss eine Liste von Blöcken sein")
+                    continue
+                for x in l:
+                    if x not in a["bloecke"]:
+                        f.append(f"{wo}: {wl} enthält „{x}“, diesen Block gibt es im Vorrat nicht")
+                if a.get("einmal"):
+                    for x in dict.fromkeys(l):
+                        if l.count(x) > a["bloecke"].count(x):
+                            f.append(f"{wo}: {wl} braucht „{x}“ öfter, als der Vorrat hergibt (\"einmal\": true)")
+            if a.get("gleichwertig") and isinstance(L[0], list) and all(isinstance(x, str) for x in L[0]):
+                for t in " ".join(L[0]).split("="):
+                    try:
+                        _parse(t)
+                    except ValueError as e:
+                        f.append(f"{wo}: „gleichwertig“ braucht eine Formel als Lösung – {e}")
+        if a.get("start") is not None and not isinstance(a["start"], str):
+            f.append(f"{wo}: „start“ muss ein Text sein")
+    if typ == "karteikarten":
+        K = a.get("karten")
+        if not (isinstance(K, list) and K):
+            f.append(f"{wo}: „karten“ braucht mindestens eine Karte")
+        else:
+            for i, k in enumerate(K):
+                if not (isinstance(k, dict) and text(k.get("v")) and text(k.get("r"))):
+                    f.append(f"{wo}, Karte {i + 1}: braucht Vorderseite („v“) und Rückseite („r“)")
+    if typ == "kreuzwort":
+        W = a.get("woerter")
+        if not (isinstance(W, list) and len(W) >= 2):
+            f.append(f"{wo}: „woerter“ braucht mindestens zwei Wörter")
+        else:
+            if len(W) > 25:
+                f.append(f"{wo}: höchstens 25 Wörter")
+            gesehen = []
+            for i, x in enumerate(W):
+                w = kw_wort(x.get("w")) if isinstance(x, dict) else ""
+                if not (isinstance(x, dict) and text(x.get("w")) and text(x.get("t"))):
+                    f.append(f"{wo}, Wort {i + 1}: braucht das Wort („w“) und den Hinweis („t“)")
+                elif not 2 <= len(w) <= 20:
+                    f.append(f"{wo}, Wort „{x['w']}“: 2 bis 20 Buchstaben (A–Z, Ä, Ö, Ü; ß wird SS)")
+                elif w in gesehen:
+                    f.append(f"{wo}, Wort „{x['w']}“ kommt doppelt vor")
+                gesehen.append(w)
     if typ == "kombi" and isinstance(a.get("teile"), list):
         if len(a["teile"]) < 2:
             f.append(f"{wo}: Eine kombinierte Aufgabe braucht mindestens zwei Teile")
@@ -363,7 +503,7 @@ def pruefe(j):
     if not isinstance(j, dict):
         return ["Das ist kein Aufgaben-JSON (Objekt mit „titel“ und „schritte“ erwartet)."]
     f = []
-    roh = json.dumps(j, ensure_ascii=False)
+    roh = json.dumps(ohne_bilder(j), ensure_ascii=False)   # Bilder zählen eigens (MAX_BILD)
     if len(roh) > MAX:
         f.append(f"Zu groß ({len(roh) // 1000} kB, höchstens {MAX // 1000} kB).")
     if VERBOTEN.search(roh):
