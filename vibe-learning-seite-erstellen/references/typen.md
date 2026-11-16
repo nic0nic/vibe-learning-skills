@@ -88,6 +88,20 @@ Jgst. 7: Konten ohne Nummer, z. B. `"konten": ["BK", "UEFE", "UST", "VORST"]`.
    "betraege": [["Rechnungsbetrag", 11900], ["Bruttoskonto", 238], ["Nettoskonto", 200], ["Steuerberichtigung", 38], ["Überweisungsbetrag", 11662]]}]}
 ```
 
+## Neu im Branch `beta` (noch nicht auf vl.nimals.de), nicht mehr experimentell
+
+### verbessern – Fehler finden und verbessern
+`text` (reiner Text, Zeilen mit `\n`) mit Fehlern `[[falsch|richtig|auch richtig]]` – **das Falsche zuerst** (wird angezeigt), danach die erlaubten Verbesserungen; `[[zu viel|]]` = Stelle löschen. Ablauf je Fehlerzeile: Zeile anklicken → alle falschen Stellen anklicken (nochmal = abwählen) → verbessern. Bei nur einer Zeile entfällt die Zeilenwahl. Stellen sind Wörter (durch Leerzeichen getrennt) und die Klammern, ein Fehler mitten im Wort also als eigene Klammer: `Titel[[</h2>|</h1>]]`. `"mono": true` (Code), `"gross": false` (Groß/klein egal), `h`.
+```json
+{"typ": "verbessern", "mono": true, "frage": "Finde und verbessere die Fehler.", "text": "<h1>Mouse Rat[[</h2>|</h1>]]\n<p>Die Band aus Pawnee</p>\n<img [[scr|src]]=\"band.jpg\">"}
+```
+
+### kreuzwort – Kreuzworträtsel
+`woerter`: `[{"w": "Bilanz", "t": "Hinweis"}]` (2 bis 25 Wörter, je 2 bis 20 Buchstaben A–Z, Ä, Ö, Ü; ß wird SS, Leerzeichen und Bindestriche entfallen). Das Gitter entsteht von selbst. Wörter mit gemeinsamen Buchstaben wählen, sonst stehen sie einzeln darunter. Sparsam einsetzen: viel Zeit, wenig Lernertrag.
+```json
+{"typ": "kreuzwort", "frage": "Löse das Rätsel.", "woerter": [{"w": "Bilanz", "t": "Gegenüberstellung von Vermögen und Kapital"}, {"w": "Inventur", "t": "Bestandsaufnahme"}, {"w": "Aktiva", "t": "linke Seite der Bilanz"}]}
+```
+
 ## Training-Schritt – Aufgaben auf Zeit und/oder endlos (Kopfrechnen, Vokabeln)
 Kein Aufgabentyp, sondern ein **Schritt** mit `"training"` statt `"aufgaben"`. Eine Aufgabe nach der anderen, Antwort eintippen (`"antwort": "eingabe"`) oder auswählen (`"mc"`, 4 Antworten, falsche automatisch).
 - `anzahl`: Aufgaben pro Runde (Ergebnis + Bestleistung). **Weglassen = endlos**: ein Fehler beendet die Serie, gezählt wird die Bestleistung.
@@ -133,12 +147,6 @@ Diese Typen gibt es bisher nur im Branch `beta` (noch nicht auf vl.nimals.de). F
 {"typ": "markieren", "frage": "Markiere alle Aufwandskonten.", "text": "Auf dem Tisch liegen Belege zu [[AWR]], BK, [[AWF]], UEFE und [[AWB]]."}
 ```
 
-## verbessern – Fehler finden und verbessern
-`text` (reiner Text, Zeilen mit `\n`) mit Fehlern `[[falsch|richtig|auch richtig]]` – **das Falsche zuerst** (wird angezeigt), danach die erlaubten Verbesserungen; `[[zu viel|]]` = Stelle löschen. Ablauf je Fehlerzeile: Zeile anklicken → alle falschen Stellen anklicken (nochmal = abwählen) → verbessern. Bei nur einer Zeile entfällt die Zeilenwahl. Stellen sind Wörter (durch Leerzeichen getrennt) und die Klammern, ein Fehler mitten im Wort also als eigene Klammer: `Titel[[</h2>|</h1>]]`. `"mono": true` (Code), `"gross": false` (Groß/klein egal), `h`.
-```json
-{"typ": "verbessern", "mono": true, "frage": "Finde und verbessere die Fehler.", "text": "<h1>Mouse Rat[[</h2>|</h1>]]\n<p>Die Band aus Pawnee</p>\n<img [[scr|src]]=\"band.jpg\">"}
-```
-
 ## beschriften – Begriffe auf ein Bild ziehen
 `bild`: eingebettet als `data:image/png|jpeg|gif|webp|svg+xml;base64,…` (höchstens 600 kB, zählt nicht zu den 150 kB; SVG mit `width` und `height`), `alt` (Bildbeschreibung), `punkte`: `[{"x": 25, "y": 40, "t": "Begriff"}]` (x, y in Prozent von links/oben), `extra` (Ablenker). Im Chat am einfachsten ein kleines SVG selbst zeichnen und mit base64 einbetten; im Editor lädt die Lehrkraft ein Bild hoch und klickt die Punkte an.
 
@@ -152,10 +160,4 @@ Diese Typen gibt es bisher nur im Branch `beta` (noch nicht auf vl.nimals.de). F
 `karten`: `[{"v": "Vorderseite", "r": "Rückseite"}]` (HTML), `"mischen": false`. „Gewusst“ / „Nicht gewusst“ – nicht gewusste Karten kommen wieder; gelöst, wenn alle gewusst sind.
 ```json
 {"typ": "karteikarten", "frage": "Lerne die Begriffe.", "karten": [{"v": "Disagio", "r": "Abschlag vom Kreditbetrag"}, {"v": "Tilgung", "r": "Rückzahlung des Kredits"}]}
-```
-
-## kreuzwort – Kreuzworträtsel
-`woerter`: `[{"w": "Bilanz", "t": "Hinweis"}]` (2 bis 25 Wörter, je 2 bis 20 Buchstaben A–Z, Ä, Ö, Ü; ß wird SS, Leerzeichen und Bindestriche entfallen). Das Gitter entsteht von selbst. Wörter mit gemeinsamen Buchstaben wählen, sonst stehen sie einzeln darunter. Sparsam einsetzen: viel Zeit, wenig Lernertrag.
-```json
-{"typ": "kreuzwort", "frage": "Löse das Rätsel.", "woerter": [{"w": "Bilanz", "t": "Gegenüberstellung von Vermögen und Kapital"}, {"w": "Inventur", "t": "Bestandsaufnahme"}, {"w": "Aktiva", "t": "linke Seite der Bilanz"}]}
 ```
