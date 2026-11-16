@@ -15,7 +15,7 @@ SKILL = pathlib.Path(__file__).resolve().parent.parent / "vibe-learning-seite-er
 ZIEL = SKILL / "assets" / "vl"
 DATEIEN = ["katalog.js", "nav.js", "sync.js", "scorm.js", "seite.css", "BWR/bwr.css",
            "lib/aufgaben.js", "lib/aufgaben.css", "lib/basis.css", "lib/designs.js", "lib/formel.js",
-           "lib/seite.js", "lib/scorm-manifest.xml"]
+           "lib/seite.js", "lib/szenario.js", "lib/szenario.css", "lib/scorm-manifest.xml"]
 
 
 def main():
