@@ -14,7 +14,7 @@ TYPEN = {
     "reihenfolge": ["karten"], "offen": ["muster"], "markieren": ["text"], "verbessern": ["text"], "beschriften": ["bild", "punkte"],
     "bloecke": ["bloecke"], "karteikarten": ["karten"], "kreuzwort": ["woerter"],
 }
-# Experimentell (Branch beta von vibe learning): Format kann sich noch ändern
+# Experimentell: Format kann sich noch ändern
 EXPERIMENTELL = ("reihenfolge", "offen", "markieren", "beschriften", "bloecke", "karteikarten")
 # Felder, die als reiner Text angezeigt werden (kein HTML): dürfen „<p>“ enthalten
 ROH = {"markieren": ["text"], "verbessern": ["text"], "bloecke": ["bloecke", "loesung", "loesungen", "start"],

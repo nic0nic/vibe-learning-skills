@@ -88,7 +88,7 @@ Jgst. 7: Konten ohne Nummer, z. B. `"konten": ["BK", "UEFE", "UST", "VORST"]`.
    "betraege": [["Rechnungsbetrag", 11900], ["Bruttoskonto", 238], ["Nettoskonto", 200], ["Steuerberichtigung", 38], ["Überweisungsbetrag", 11662]]}]}
 ```
 
-## Neu im Branch `beta` (noch nicht auf vl.nimals.de), nicht mehr experimentell
+## Weitere Typen
 
 ### verbessern – Fehler finden und verbessern
 `text` (reiner Text, Zeilen mit `\n`) mit Fehlern `[[falsch|richtig|auch richtig]]` – **das Falsche zuerst** (wird angezeigt), danach die erlaubten Verbesserungen; `[[zu viel|]]` = Stelle löschen. Ablauf je Fehlerzeile: Zeile anklicken → alle falschen Stellen anklicken (nochmal = abwählen) → verbessern. Bei nur einer Zeile entfällt die Zeilenwahl. Stellen sind Wörter (durch Leerzeichen getrennt) und die Klammern, ein Fehler mitten im Wort also als eigene Klammer: `Titel[[</h2>|</h1>]]`. `"mono": true` (Code), `"gross": false` (Groß/klein egal), `h`.
@@ -125,9 +125,9 @@ Kein Aufgabentyp, sondern ein **Schritt** mit `"training"` statt `"aufgaben"`. E
 Im Editor („Übung erstellen“): Baustein „⏱ Training“; Vokabeln lassen sich aus Excel/CSV/Quizlet/Anki importieren.
 
 
-# Experimentelle Typen (Branch `beta` von vibe learning)
+# Experimentelle Typen
 
-Diese Typen gibt es bisher nur im Branch `beta` (noch nicht auf vl.nimals.de). Format und Bedienung können sich noch ändern – der Lehrkraft das dazusagen. Im Editor stehen sie unter „Experimentell (β)“. Reiner Text heißt: kein HTML, ein `<p>` wird als Zeichen angezeigt (gut für Code).
+Format und Bedienung dieser Typen können sich noch ändern – der Lehrkraft das dazusagen. Im Editor stehen sie unter „Experimentell (β)“. Reiner Text heißt: kein HTML, ein `<p>` wird als Zeichen angezeigt (gut für Code).
 
 ## reihenfolge – Karten ordnen
 `karten`: Texte in der **richtigen** Reihenfolge (HTML erlaubt), werden gemischt. Ziehen, ▲ ▼ oder antippen. `"mono": true` → reiner Text in Schreibmaschinenschrift, Einrückung bleibt (Codezeilen ordnen). `h` (Hinweis bei Fehler). Gleiche Texte sind austauschbar.
